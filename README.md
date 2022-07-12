@@ -1,3 +1,1 @@
 # Sinnabro_Frontend
-
-#
