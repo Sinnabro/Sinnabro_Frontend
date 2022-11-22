@@ -1,9 +1,12 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import BeforeLogin from "./pages/BeforeLogin";
 
 const Router = () => {
   return (
     <BrowserRouter>
-      <Routes></Routes>
+      <Routes>
+        <Route path="/" element={<BeforeLogin/>} />
+      </Routes>
     </BrowserRouter>
   );
 };
