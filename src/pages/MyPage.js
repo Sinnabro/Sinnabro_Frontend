@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import Header from "../components/Header";
 import UserInfo from "../components/mypage/UserInfo";
 import UserTimeTable from "../components/mypage/UserTimeTable";
 const MyPage = () => {
@@ -65,7 +64,6 @@ const MyPage = () => {
 
   return (
     <>
-      <Header />
       <Wrapper>
         <MyWrapper>
           <UserInfo data={data} />
