@@ -144,11 +144,12 @@ const linkStyle = {
 const Div = styled.div`
   text-decoration: none;
   position: fixed;
-  width: 100%;
-  height: 130px;
+  width: 100vw;
+  height: 100px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  background-color: #ffffff;
   border-width: 0 0 1px 0;
   border-color: #808080;
   border-style: solid;
