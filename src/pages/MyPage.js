@@ -58,6 +58,12 @@ const MyPage = () => {
   const NowDay = new Date();
   const [monthValue, setMonthValue] = useState(NowDay.getMonth() + 1);
   const [yearValue, setYearValue] = useState(NowDay.getFullYear());
+  const [selectValue, setSelectValue] = useState();
+
+  useEffect(() => {
+    if (selectValue !== undefined) console.log(selectValue);
+  }, [selectValue]);
+
   useEffect(() => {
     console.log(yearValue, monthValue);
   }, [yearValue, monthValue]);
@@ -72,6 +78,7 @@ const MyPage = () => {
             setYearValue={setYearValue}
             data={Pojectdata}
             yearValue={yearValue}
+            setSelectValue={setSelectValue}
           />
         </MyWrapper>
       </Wrapper>
