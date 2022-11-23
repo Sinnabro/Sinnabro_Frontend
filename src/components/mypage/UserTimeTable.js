@@ -1,6 +1,12 @@
 import styled from "styled-components";
 
-const UserTimeTable = ({ data, setMonthValue, setYearValue, yearValue }) => {
+const UserTimeTable = ({
+  data,
+  setMonthValue,
+  setYearValue,
+  yearValue,
+  setSelectValue,
+}) => {
   return (
     <Wrapper>
       <Left>
@@ -31,24 +37,11 @@ const UserTimeTable = ({ data, setMonthValue, setYearValue, yearValue }) => {
           <span>좋아요</span>
         </ListTitle>
         <ListContent>
-          <RenderList data={data} />
+          <RenderList data={data} setSelectValue={setSelectValue} />
         </ListContent>
       </Right>
     </Wrapper>
   );
-};
-
-const RenderList = ({ data }) => {
-  const result = [];
-  data.map((value) => {
-    result.push(
-      <EachListContent key={value.day}>
-        <span>{value.day}</span>
-        <span>{value.good}</span>
-      </EachListContent>
-    );
-  });
-  return result;
 };
 
 const RenderMonth = ({ setMonthValue }) => {
@@ -65,6 +58,23 @@ const RenderMonth = ({ setMonthValue }) => {
       </EachMonth>
     );
   }
+  return result;
+};
+
+const RenderList = ({ data, setSelectValue }) => {
+  const result = [];
+
+  data.map((value) => {
+    result.push(
+      <EachListContent
+        key={value.day}
+        onClick={() => setSelectValue(value.day)}
+      >
+        <span>{value.day}</span>
+        <span>{value.good}</span>
+      </EachListContent>
+    );
+  });
   return result;
 };
 
