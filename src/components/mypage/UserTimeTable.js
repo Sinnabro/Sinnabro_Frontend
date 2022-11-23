@@ -7,6 +7,8 @@ const UserTimeTable = ({
   yearValue,
   setSelectValue,
 }) => {
+  const NowDay = new Date();
+
   return (
     <Wrapper>
       <Left>
