@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import { imgLogo } from "../assets";
 
-const BeforeHeader = () => {
+const Header = () => {
   return (
     <Div>
       <CoverIMGLogoLink to="/">
@@ -84,4 +84,4 @@ const SignUpButton = styled.button`
   ${buttonStyle}
 `;
 
-export default BeforeHeader;
+export default Header;
