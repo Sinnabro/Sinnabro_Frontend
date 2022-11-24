@@ -88,6 +88,7 @@ const Header = () => {
         <CoverIMGLogoLink to="/">
           <IMGLogo src={imgLogo} alt="IMGLogo" />
         </CoverIMGLogoLink>
+        
         <CoverTextsDiv cookie={cookie}>
           <TextsDiv>
             <MainLink to="/main">메인페이지</MainLink>
@@ -142,7 +143,6 @@ const linkStyle = {
 
 // styled-components
 const Div = styled.div`
-  text-decoration: none;
   position: fixed;
   width: 100vw;
   height: 100px;
@@ -228,11 +228,11 @@ const TimeDiv = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  font-size: 20px;
   color: #4263eb;
   font-family: "Inter";
   font-style: normal;
   font-weight: 700;
-  font-size: 20px;
   background: #ffffff;
   border-width: 2px;
   border-color: #4263eb;
