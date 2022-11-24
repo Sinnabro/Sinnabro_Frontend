@@ -4,6 +4,4 @@ export { default as GithubImg } from "./img/GithubImg.png";
 export { default as Logo } from "./img/LogoImg.png";
 export { default as MeetingImg } from "./img/MeetingImg.png";
 export { default as TodoImg } from "./img/TodoImg.png";
-export { default as checkedBox } from "./img/checkedBox.png";
-export { default as checkbox } from "./img/checkbox.png";
 export { default as UserImg } from "./img/UserImg.png";
