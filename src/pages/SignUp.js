@@ -1,8 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 import Header from "../components/Header";
 import { imgLogo, x } from "../assets";
-import { useState } from "react";
 
 const SignUp = () => {
   // 변수 선언
