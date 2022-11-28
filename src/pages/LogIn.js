@@ -205,8 +205,7 @@ const LogInP = styled.p`
 `;
 
 const BodyDiv = styled.div`
-  margin-top: 13px;
-  margin-left: 84px;
+  margin: 13px 0 0 84px;
   width: 480px;
 `;
 
