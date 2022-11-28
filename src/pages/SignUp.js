@@ -153,7 +153,6 @@ const SignUp = () => {
       setErrorEC("");
       setModal(false);
       numberSend += 1;
-      console.log(numberSend);
     }
   };
 
@@ -289,19 +288,6 @@ const SignUp = () => {
               />
               <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
             </EmailDiv>
-
-            {/* <EmailConfirmDiv>
-              <EmailConfirmInput
-                onChange={change}
-                name="emailConfirm"
-                value={emailConfirm}
-                type="text"
-                placeholder="이메일 인증번호"
-              />
-            </EmailConfirmDiv>
-            <EmailConfirmErrorDiv name="errorEC">
-              {errorEC}
-            </EmailConfirmErrorDiv> */}
 
             <SignUpButton onClick={checkSignUp}>회원가입</SignUpButton>
           </BodyDiv>
