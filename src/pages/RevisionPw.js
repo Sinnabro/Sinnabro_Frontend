@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-
-import { imgLogo } from "../assets";
 import { useState } from "react";
+
 import Header from "../components/Header";
+import { imgLogo } from "../assets";
 
 const RevisionPw = () => {
   // 변수 선언
