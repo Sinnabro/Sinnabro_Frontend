@@ -7,3 +7,9 @@ export { default as TodoImg } from "./img/TodoImg.png";
 export { default as UserImg } from "./img/UserImg.png";
 export { default as UserProfileList } from "./img/UserProfileList.png";
 export { default as UserListHeart } from "./img/UserListHeart.png";
+
+export { default as imgLogo } from "./img/IMGLogo.png";
+export { default as x } from "./img/X.png";
+export { default as bell } from "./img/Bell.png";
+export { default as pencil } from "./img/Pencil.png";
+export { default as boPencil } from "./img/BoPencil.png";
