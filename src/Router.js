@@ -6,12 +6,14 @@ import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import RevisionPw from "./pages/RevisionPw";
 import FindPw from "./pages/FindPw";
+import Main from "./pages/Main";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<BeforeLogin />} />
+        <Route path="/main" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
