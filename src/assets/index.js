@@ -13,3 +13,5 @@ export { default as x } from "./img/X.png";
 export { default as bell } from "./img/Bell.png";
 export { default as pencil } from "./img/Pencil.png";
 export { default as boPencil } from "./img/BoPencil.png";
+export { default as checkedBox } from "./img/checkedBox.png";
+export { default as checkbox } from "./img/checkbox.png";
