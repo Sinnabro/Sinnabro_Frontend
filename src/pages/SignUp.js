@@ -175,126 +175,122 @@ const SignUp = () => {
   };
 
   return (
-    <>
-      <Header />
+    <Div>
+      <CoverModalDiv modal={modal}>
+        <ModalDiv>
+          <EmailConfirmDiv>
+            <ECTitleDiv>
+              <ModalImgsDiv>
+                <Link to="/beforelogin">
+                  <IMGLogo src={imgLogo} alt="IMGLogo" />
+                </Link>
 
-      <Div>
-        <CoverModalDiv modal={modal}>
-          <ModalDiv>
-            <EmailConfirmDiv>
-              <ECTitleDiv>
-                <ModalImgsDiv>
-                  <Link to="/beforelogin">
-                    <IMGLogo src={imgLogo} alt="IMGLogo" />
-                  </Link>
+                <XButton onClick={modalRemove}>
+                  <X src={x} alt="X" />
+                </XButton>
+              </ModalImgsDiv>
+            </ECTitleDiv>
 
-                  <XButton onClick={modalRemove}>
-                    <X src={x} alt="X" />
-                  </XButton>
-                </ModalImgsDiv>
-              </ECTitleDiv>
-
-              <ModalBodyDiv>
-                <TitleP
-                  style={{
-                    marginBottom: "25px",
-                    color: "#000000",
-                  }}
-                >
-                  이메일 인증하기
-                </TitleP>
-                <EmailConfirmInput
-                  onChange={change}
-                  name="emailConfirm"
-                  value={emailConfirm}
-                  type="text"
-                  placeholder="인증번호 6자리를 입력해 주세요."
-                />
-                <EmailConfirmErrorDiv name="errorEC">
-                  {errorEC}
-                </EmailConfirmErrorDiv>
-
-                <CoverSendDiv>
-                  <SendButton onClick={sendEmail}>전송하기</SendButton>
-                </CoverSendDiv>
-              </ModalBodyDiv>
-            </EmailConfirmDiv>
-          </ModalDiv>
-        </CoverModalDiv>
-
-        <BoxDiv>
-          <TitleLink to="/beforelogin">
-            <IMGLogo src={imgLogo} alt="IMGLogo" />
-          </TitleLink>
-
-          <SignUpP>회원가입</SignUpP>
-
-          <BodyDiv>
-            <NicknameDiv>
-              <InputTitleDiv>
-                <TitleP>닉네임</TitleP>
-                <OverlapButton onClick={overlap}>중복확인</OverlapButton>
-              </InputTitleDiv>
-
-              <NicknameInput
+            <ModalBodyDiv>
+              <TitleP
+                style={{
+                  marginBottom: "25px",
+                  color: "#000000",
+                }}
+              >
+                이메일 인증하기
+              </TitleP>
+              <EmailConfirmInput
                 onChange={change}
-                name="nickname"
-                value={nickname}
+                name="emailConfirm"
+                value={emailConfirm}
                 type="text"
-                placeholder="닉네임"
+                placeholder="인증번호 6자리를 입력해 주세요."
               />
-              <NicknameErrorDiv name="errorN">{errorN}</NicknameErrorDiv>
-            </NicknameDiv>
+              <EmailConfirmErrorDiv name="errorEC">
+                {errorEC}
+              </EmailConfirmErrorDiv>
 
-            <PwDiv>
-              <InputTitleDiv>
-                <TitleP>비밀번호</TitleP>
-              </InputTitleDiv>
-              <PwInput
-                onChange={change}
-                name="pw"
-                value={pw}
-                type="password"
-                placeholder="비밀번호"
-              />
-              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-            </PwDiv>
+              <CoverSendDiv>
+                <SendButton onClick={sendEmail}>전송하기</SendButton>
+              </CoverSendDiv>
+            </ModalBodyDiv>
+          </EmailConfirmDiv>
+        </ModalDiv>
+      </CoverModalDiv>
 
-            <CheckPwDiv>
-              <InputTitleDiv>
-                <TitleP>비밀번호 확인</TitleP>
-              </InputTitleDiv>
-              <CheckPwInput
-                onChange={change}
-                name="checkPw"
-                value={checkPw}
-                type="password"
-                placeholder="비밀번호 확인"
-              />
-              <CheckPwErrorDiv name="errorCP">{errorCP}</CheckPwErrorDiv>
-            </CheckPwDiv>
+      <BoxDiv>
+        <TitleLink to="/beforelogin">
+          <IMGLogo src={imgLogo} alt="IMGLogo" />
+        </TitleLink>
 
-            <EmailDiv>
-              <InputTitleDiv>
-                <TitleP>이메일</TitleP>
-                <ConfirmButton onClick={confirm}>인증하기</ConfirmButton>
-              </InputTitleDiv>
+        <SignUpP>회원가입</SignUpP>
 
-              <EmailInput
-                onChange={change}
-                name="email"
-                value={email}
-                type="email"
-                placeholder="이메일"
-              />
-              <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
-            </EmailDiv>
+        <BodyDiv>
+          <NicknameDiv>
+            <InputTitleDiv>
+              <TitleP>닉네임</TitleP>
+              <OverlapButton onClick={overlap}>중복확인</OverlapButton>
+            </InputTitleDiv>
 
-            <SignUpButton onClick={checkSignUp}>회원가입</SignUpButton>
-          </BodyDiv>
-        </BoxDiv>
-      </Div>
-    </>
+            <NicknameInput
+              onChange={change}
+              name="nickname"
+              value={nickname}
+              type="text"
+              placeholder="닉네임"
+            />
+            <NicknameErrorDiv name="errorN">{errorN}</NicknameErrorDiv>
+          </NicknameDiv>
+
+          <PwDiv>
+            <InputTitleDiv>
+              <TitleP>비밀번호</TitleP>
+            </InputTitleDiv>
+            <PwInput
+              onChange={change}
+              name="pw"
+              value={pw}
+              type="password"
+              placeholder="비밀번호"
+            />
+            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+          </PwDiv>
+
+          <CheckPwDiv>
+            <InputTitleDiv>
+              <TitleP>비밀번호 확인</TitleP>
+            </InputTitleDiv>
+            <CheckPwInput
+              onChange={change}
+              name="checkPw"
+              value={checkPw}
+              type="password"
+              placeholder="비밀번호 확인"
+            />
+            <CheckPwErrorDiv name="errorCP">{errorCP}</CheckPwErrorDiv>
+          </CheckPwDiv>
+
+          <EmailDiv>
+            <InputTitleDiv>
+              <TitleP>이메일</TitleP>
+              <ConfirmButton onClick={confirm}>인증하기</ConfirmButton>
+            </InputTitleDiv>
+
+            <EmailInput
+              onChange={change}
+              name="email"
+              value={email}
+              type="email"
+              placeholder="이메일"
+            />
+            <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
+          </EmailDiv>
+
+          <SignUpButton onClick={checkSignUp}>회원가입</SignUpButton>
+        </BodyDiv>
+      </BoxDiv>
+    </Div>
   );
 };
 
@@ -426,7 +422,6 @@ const SendButton = styled.button`
 `;
 
 const BoxDiv = styled.div`
-  margin-top: 135px;
   width: 662px;
   height: 880px;
   background-color: #ffffff;
