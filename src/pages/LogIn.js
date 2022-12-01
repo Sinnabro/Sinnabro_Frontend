@@ -87,57 +87,51 @@ const LogIn = () => {
   };
 
   return (
-    <>
-      <Header />
+    <Div>
+      <BoxDiv>
+        <TitleLink to="/beforelogin">
+          <IMGLogo src={imgLogo} alt="IMGLogo" />
+        </TitleLink>
 
-      <Div>
-        <BoxDiv>
-          <TitleLink to="/beforelogin">
-            <IMGLogo src={imgLogo} alt="IMGLogo" />
-          </TitleLink>
+        <LogInP>로그인</LogInP>
 
-          <LogInP>로그인</LogInP>
+        <BodyDiv>
+          <EmailDiv>
+            <InputTitleDiv>
+              <TitleP>이메일</TitleP>
+            </InputTitleDiv>
+            <EmailInput
+              onChange={change}
+              name="email"
+              value={email}
+              type="email"
+              placeholder="이메일"
+            />
+            <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
+          </EmailDiv>
 
-          <BodyDiv>
-            <EmailDiv>
-              <InputTitleDiv>
-                <TitleP>이메일</TitleP>
-              </InputTitleDiv>
-              <EmailInput
-                onChange={change}
-                name="email"
-                value={email}
-                type="email"
-                placeholder="이메일"
-              />
-              <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
-            </EmailDiv>
+          <PwDiv>
+            <InputTitleDiv>
+              <TitleP>비밀번호</TitleP>
+            </InputTitleDiv>
+            <PwInput
+              onChange={change}
+              name="pw"
+              value={pw}
+              type="password"
+              placeholder="비밀번호"
+            />
+            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+          </PwDiv>
 
-            <PwDiv>
-              <InputTitleDiv>
-                <TitleP>비밀번호</TitleP>
-              </InputTitleDiv>
-              <PwInput
-                onChange={change}
-                name="pw"
-                value={pw}
-                type="password"
-                placeholder="비밀번호"
-              />
-              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-            </PwDiv>
+          <LogInButton onClick={checkLogIn}>로그인</LogInButton>
 
-            <LogInButton onClick={checkLogIn}>로그인</LogInButton>
-
-            <CoverGoFindPwDiv>
-              <GoFindPwLink to="/findpw">
-                비밀번호를 잊어버리셨나요?
-              </GoFindPwLink>
-            </CoverGoFindPwDiv>
-          </BodyDiv>
-        </BoxDiv>
-      </Div>
-    </>
+          <CoverGoFindPwDiv>
+            <GoFindPwLink to="/findpw">비밀번호를 잊어버리셨나요?</GoFindPwLink>
+          </CoverGoFindPwDiv>
+        </BodyDiv>
+      </BoxDiv>
+    </Div>
   );
 };
 
@@ -177,7 +171,6 @@ const Div = styled.div`
   justify-content: center;
 `;
 const BoxDiv = styled.div`
-  margin-top: 255px;
   width: 662px;
   height: 700px;
   background: #ffffff;
