@@ -77,64 +77,58 @@ const RevisionPw = () => {
   };
 
   return (
-    <>
-      <Header />
+    <Div>
+      <BoxDiv>
+        <TitleLink to="/beforelogin">
+          <IMGLogo src={imgLogo} alt="IMGLogo" />
+        </TitleLink>
 
-      <Div>
-        <BoxDiv>
-          <TitleLink to="/beforelogin">
-            <IMGLogo src={imgLogo} alt="IMGLogo" />
-          </TitleLink>
+        <RevisionPwP>비밀번호 재설정</RevisionPwP>
 
-          <RevisionPwP>비밀번호 재설정</RevisionPwP>
-
-          <BodyDiv>
-            <PwDiv>
-              <InputTitleDiv>
-                <TitleP>기존 비밀번호</TitleP>
-              </InputTitleDiv>
-              <PwInput
-                onChange={change}
-                name="pw"
-                value={pw}
-                type="password"
-                placeholder="비밀번호"
-              />
-              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-            </PwDiv>
-            <NewPwDiv>
-              <InputTitleDiv>
-                <TitleP>새 비밀번호</TitleP>
-              </InputTitleDiv>
-              <NewPwInput
-                onChange={change}
-                name="newPw"
-                value={newPw}
-                type="password"
-                placeholder="새로운 비밀번호"
-              />
-              <NewPwErrorDiv name="errorCP">{errorNP}</NewPwErrorDiv>
-            </NewPwDiv>
-            <CheckNewPwDiv>
-              <InputTitleDiv>
-                <TitleP>비밀번호 확인</TitleP>
-              </InputTitleDiv>
-              <CheckNewPwInput
-                onChange={change}
-                name="checkNewPw"
-                value={checkNewPw}
-                type="password"
-                placeholder="새로운 비밀번호 확인"
-              />
-              <CheckNewPwErrorDiv name="errorCNP">
-                {errorCNP}
-              </CheckNewPwErrorDiv>
-            </CheckNewPwDiv>
-            <RevisionButton onClick={checkRevision}>수정하기</RevisionButton>
-          </BodyDiv>
-        </BoxDiv>
-      </Div>
-    </>
+        <BodyDiv>
+          <PwDiv>
+            <InputTitleDiv>
+              <TitleP>기존 비밀번호</TitleP>
+            </InputTitleDiv>
+            <PwInput
+              onChange={change}
+              name="pw"
+              value={pw}
+              type="password"
+              placeholder="비밀번호"
+            />
+            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+          </PwDiv>
+          <NewPwDiv>
+            <InputTitleDiv>
+              <TitleP>새 비밀번호</TitleP>
+            </InputTitleDiv>
+            <NewPwInput
+              onChange={change}
+              name="newPw"
+              value={newPw}
+              type="password"
+              placeholder="새로운 비밀번호"
+            />
+            <NewPwErrorDiv name="errorCP">{errorNP}</NewPwErrorDiv>
+          </NewPwDiv>
+          <CheckNewPwDiv>
+            <InputTitleDiv>
+              <TitleP>비밀번호 확인</TitleP>
+            </InputTitleDiv>
+            <CheckNewPwInput
+              onChange={change}
+              name="checkNewPw"
+              value={checkNewPw}
+              type="password"
+              placeholder="새로운 비밀번호 확인"
+            />
+            <CheckNewPwErrorDiv name="errorCNP">{errorCNP}</CheckNewPwErrorDiv>
+          </CheckNewPwDiv>
+          <RevisionButton onClick={checkRevision}>수정하기</RevisionButton>
+        </BodyDiv>
+      </BoxDiv>
+    </Div>
   );
 };
 
@@ -174,7 +168,6 @@ const Div = styled.div`
   justify-content: center;
 `;
 const BoxDiv = styled.div`
-  margin-top: 210px;
   width: 662px;
   height: 790px;
   background: #ffffff;
