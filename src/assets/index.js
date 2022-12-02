@@ -19,3 +19,4 @@ export { default as deleteBox } from "./img/Delete.png";
 export { default as DDayPencil } from "./img/DDayPencil.png";
 export { default as Good } from "./img/Good.png";
 export { default as notGood } from "./img/notGood.png";
+export { default as Error404 } from "./img/404Error.png";
