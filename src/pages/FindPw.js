@@ -155,111 +155,107 @@ const FindPw = () => {
   };
 
   return (
-    <>
-      <Header />
+    <Div>
+      <CoverModalDiv modal={modal}>
+        <ModalDiv>
+          <EmailConfirmDiv>
+            <ECTitleDiv>
+              <ModalImgsDiv>
+                <Link to="/beforelogin">
+                  <IMGLogo src={imgLogo} alt="IMGLogo" />
+                </Link>
 
-      <Div>
-        <CoverModalDiv modal={modal}>
-          <ModalDiv>
-            <EmailConfirmDiv>
-              <ECTitleDiv>
-                <ModalImgsDiv>
-                  <Link to="/beforelogin">
-                    <IMGLogo src={imgLogo} alt="IMGLogo" />
-                  </Link>
+                <XButton onClick={modalRemove}>
+                  <X src={x} alt="X" />
+                </XButton>
+              </ModalImgsDiv>
+            </ECTitleDiv>
 
-                  <XButton onClick={modalRemove}>
-                    <X src={x} alt="X" />
-                  </XButton>
-                </ModalImgsDiv>
-              </ECTitleDiv>
-
-              <ModalBodyDiv>
-                <TitleP
-                  style={{
-                    marginBottom: "25px",
-                    color: "#000000",
-                  }}
-                >
-                  이메일 인증하기
-                </TitleP>
-                <EmailConfirmInput
-                  onChange={change}
-                  name="emailConfirm"
-                  value={emailConfirm}
-                  type="text"
-                  placeholder="인증번호 6자리를 입력해 주세요."
-                />
-                <EmailConfirmErrorDiv name="errorEC">
-                  {errorEC}
-                </EmailConfirmErrorDiv>
-
-                <CoverSendDiv>
-                  <SendButton onClick={sendEmail}>전송하기</SendButton>
-                </CoverSendDiv>
-              </ModalBodyDiv>
-            </EmailConfirmDiv>
-          </ModalDiv>
-        </CoverModalDiv>
-
-        <BoxDiv>
-          <TitleLink to="beforelogin">
-            <IMGLogo src={imgLogo} alt="IMGLogo" />
-          </TitleLink>
-
-          <FindPwP>비밀번호 재설정</FindPwP>
-
-          <BodyDiv>
-            <EmailDiv>
-              <InputTitleDiv>
-                <TitleP>이메일</TitleP>
-                <ConfirmButton onClick={confirm}>인증하기</ConfirmButton>
-              </InputTitleDiv>
-              <EmailInput
+            <ModalBodyDiv>
+              <TitleP
+                style={{
+                  marginBottom: "25px",
+                  color: "#000000",
+                }}
+              >
+                이메일 인증하기
+              </TitleP>
+              <EmailConfirmInput
                 onChange={change}
-                name="email"
-                value={email}
-                type="email"
-                placeholder="이메일"
+                name="emailConfirm"
+                value={emailConfirm}
+                type="text"
+                placeholder="인증번호 6자리를 입력해 주세요."
               />
-              <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
-            </EmailDiv>
+              <EmailConfirmErrorDiv name="errorEC">
+                {errorEC}
+              </EmailConfirmErrorDiv>
 
-            <PwDiv>
-              <InputTitleDiv>
-                <TitleP>새 비밀번호</TitleP>
-              </InputTitleDiv>
-              <PwInput
-                onChange={change}
-                name="pw"
-                value={pw}
-                type="password"
-                placeholder="비밀번호"
-              />
-              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-            </PwDiv>
+              <CoverSendDiv>
+                <SendButton onClick={sendEmail}>전송하기</SendButton>
+              </CoverSendDiv>
+            </ModalBodyDiv>
+          </EmailConfirmDiv>
+        </ModalDiv>
+      </CoverModalDiv>
 
-            <CheckPwDiv>
-              <InputTitleDiv>
-                <TitleP>비밀번호 확인</TitleP>
-              </InputTitleDiv>
-              <CheckPwInput
-                onChange={change}
-                name="checkPw"
-                value={checkPw}
-                type="password"
-                placeholder="비밀번호 확인"
-              />
-              <CheckPwErrorDiv name="errorCP">{errorCP}</CheckPwErrorDiv>
-            </CheckPwDiv>
+      <BoxDiv>
+        <TitleLink to="beforelogin">
+          <IMGLogo src={imgLogo} alt="IMGLogo" />
+        </TitleLink>
 
-            <RevisionPwButton onClick={checkRevisionPw}>
-              비밀번호 수정
-            </RevisionPwButton>
-          </BodyDiv>
-        </BoxDiv>
-      </Div>
-    </>
+        <FindPwP>비밀번호 재설정</FindPwP>
+
+        <BodyDiv>
+          <EmailDiv>
+            <InputTitleDiv>
+              <TitleP>이메일</TitleP>
+              <ConfirmButton onClick={confirm}>인증하기</ConfirmButton>
+            </InputTitleDiv>
+            <EmailInput
+              onChange={change}
+              name="email"
+              value={email}
+              type="email"
+              placeholder="이메일"
+            />
+            <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
+          </EmailDiv>
+
+          <PwDiv>
+            <InputTitleDiv>
+              <TitleP>새 비밀번호</TitleP>
+            </InputTitleDiv>
+            <PwInput
+              onChange={change}
+              name="pw"
+              value={pw}
+              type="password"
+              placeholder="비밀번호"
+            />
+            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+          </PwDiv>
+
+          <CheckPwDiv>
+            <InputTitleDiv>
+              <TitleP>비밀번호 확인</TitleP>
+            </InputTitleDiv>
+            <CheckPwInput
+              onChange={change}
+              name="checkPw"
+              value={checkPw}
+              type="password"
+              placeholder="비밀번호 확인"
+            />
+            <CheckPwErrorDiv name="errorCP">{errorCP}</CheckPwErrorDiv>
+          </CheckPwDiv>
+
+          <RevisionPwButton onClick={checkRevisionPw}>
+            비밀번호 수정
+          </RevisionPwButton>
+        </BodyDiv>
+      </BoxDiv>
+    </Div>
   );
 };
 
@@ -390,7 +386,6 @@ const SendButton = styled.button`
 `;
 
 const BoxDiv = styled.div`
-  margin-top: 210px;
   width: 662px;
   height: 790px;
   background-color: #ffffff;
