@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import DDay from "../components/DDay";
 import LeftCalendar from "../components/main/Calendar/LeftCalendar";
-// import Calendar from "../components/main/Calendar--";
 import VeiwTodo from "../components/main/VeiwTodo";
 
 const Main = () => {
