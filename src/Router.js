@@ -10,6 +10,7 @@ import FindPw from "./pages/FindPw";
 import Main from "./pages/Main";
 // import Header from "./components/Header";
 import ViewMain from "./pages/ViewMain";
+import NotFound from "./pages/Error";
 
 const Router = () => {
   return (
@@ -25,6 +26,7 @@ const Router = () => {
         <Route path="/revisionpw" element={<RevisionPw />} />
         <Route path="/findpw" element={<FindPw />} />
         <Route path="/view" element={<ViewMain />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   );
