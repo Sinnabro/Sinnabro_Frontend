@@ -155,6 +155,7 @@ const subCollor = "#192975";
 const Wrapper = styled.div`
   background-color: #f5f5f5;
   display: flex;
+  padding-top: 160px;
   justify-content: center;
   flex-direction: column;
 `;
@@ -188,6 +189,9 @@ const LoginButton = styled.button`
 const Img1 = styled.img`
   width: 738px;
   height: 392px;
+  @media screen and (max-width: 1919px) {
+    display: none;
+  }
 `;
 
 const Container2 = styled(Container1)`
@@ -235,6 +239,9 @@ const Container3 = styled(Container1)`
 const Img2 = styled.img`
   width: 596.91px;
   height: 505.57px;
+  @media screen and (max-width: 1919px) {
+    display: none;
+  }
 `;
 const ExplainSub2 = styled(ExplainSub)`
   color: ${subCollor};
