@@ -8,10 +8,12 @@ import LogIn from "./pages/LogIn";
 import RevisionPw from "./pages/RevisionPw";
 import FindPw from "./pages/FindPw";
 import Main from "./pages/Main";
+import Header from "./components/Header";
 
 const Router = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route path="/user" element={<DayUser />} />
         <Route path="/" element={<BeforeLogin />} />

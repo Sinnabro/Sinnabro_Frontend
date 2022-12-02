@@ -7,9 +7,9 @@ const VeiwTodo = ({ data }) => {
       <Title>To Do List</Title>
       <Hr />
       <TodoWrapper>
-        {data.map((value) => {
+        {data.map((value,i) => {
           return (
-            <EachTodo>
+            <EachTodo key={i}>
               {value.check ? (
                 <Check src={checkedBox} />
               ) : (
