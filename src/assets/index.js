@@ -12,3 +12,7 @@ export { default as pencil } from "./img/Pencil.png";
 export { default as boPencil } from "./img/BoPencil.png";
 export { default as checkedBox } from "./img/checkedBox.png";
 export { default as checkbox } from "./img/checkbox.png";
+export { default as deleteBox } from "./img/Delete.png";
+export { default as DDayPencil } from "./img/DDayPencil.png";
+export { default as Good } from "./img/Good.png";
+export { default as notGood } from "./img/notGood.png";

@@ -1,7 +1,12 @@
 import { useState } from "react";
 import styled from "styled-components";
 
-const DDay = ({ data }) => {
+const DDay = ({ height }) => {
+  let data = {
+    dayname: "기말고사",
+    date: "2022-12-21",
+  };
+
   let [dDay, setDDay] = useState("");
   let day = data.date;
   const masDay = new Date(day);
@@ -19,7 +24,7 @@ const DDay = ({ data }) => {
   else dDay = `D - ${diffDay * -1}`;
 
   return (
-    <Wrapper>
+    <Wrapper style={(height = { height })}>
       <RestDay>{dDay}</RestDay>
       <DDayName>{data.dayname}</DDayName>
     </Wrapper>
@@ -30,7 +35,6 @@ export default DDay;
 
 const Wrapper = styled.div`
   background-color: #5c7cfa;
-  height: 200px;
   width: 449px;
   border-radius: 14px;
   display: flex;
