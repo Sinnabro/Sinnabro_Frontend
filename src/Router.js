@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import BeforeLogin from "./pages/BeforeLogin";
 import Mypage from "./pages/MyPage";
+import DayUser from "./pages/DayUser";
 import SignUp from "./pages/SignUp";
 import LogIn from "./pages/LogIn";
 import RevisionPw from "./pages/RevisionPw";
@@ -12,6 +13,7 @@ const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
+        <Route path="/user" element={<DayUser />} />
         <Route path="/" element={<BeforeLogin />} />
         <Route path="/main" element={<Main />} />
         <Route path="/mypage" element={<Mypage />} />
