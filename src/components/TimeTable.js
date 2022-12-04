@@ -33,7 +33,6 @@ const TimeTable = ({ bar, setBar }) => {
           return (
             <GDiv key={i}>
               <P>{i}</P>
-              <Img src={pencil} alt="Pencil" />
               <Graph bar={bar} setBar={setBar} />
             </GDiv>
           );
@@ -110,13 +109,13 @@ const P = styled.p`
   color: #808080;
 `;
 
-const Img = styled.img`
-  position: absolute;
-  width: 16px;
+// const Img = styled.img`
+//   position: absolute;
+//   width: 16px;
 
-  &:hover {
-    display: none;
-  }
-`;
+//   &:hover {
+//     display: none;
+//   }
+// `;
 
 export default TimeTable;
