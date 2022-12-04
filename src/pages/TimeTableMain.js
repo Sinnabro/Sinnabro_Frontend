@@ -112,6 +112,10 @@ const TimeTableMain = () => {
     }
   };
 
+  useEffect(() => {
+    console.log(bar);
+  }, [bar]);
+
   return (
     <Div>
       <BodyDiv>
