@@ -12,7 +12,7 @@ const TimeTableMain = () => {
 
   // modal
   const [modal1, setModal1] = useState(false);
-  const [modal2, setModal2] = useState(true);
+  const [modal2, setModal2] = useState(false);
 
   // modal remove 함수
   const modalRemove1 = () => {
@@ -41,20 +41,6 @@ const TimeTableMain = () => {
       ...inputs,
       [e.target.name]: e.target.value,
     });
-  };
-
-  // 그래프 길이 조절 함수
-  const progress = () => {
-    let i = 0;
-
-    setInterval(() => {
-      if (i <= number) {
-        setBar(`${(i * 5) / 3}%`);
-        i++;
-      } else {
-        clearInterval();
-      }
-    }, 16);
   };
 
   // error message 보내주는 함수들
@@ -103,6 +89,20 @@ const TimeTableMain = () => {
     }
   };
 
+  // 그래프 길이 조절 함수
+  const progress = () => {
+    let i = 0;
+
+    setInterval(() => {
+      if (i <= number) {
+        setBar(`${(i * 5) / 3}%`);
+        i++;
+      } else {
+        clearInterval();
+      }
+    }, 16);
+  };
+
   const checkSetting2 = () => {
     progress();
     errorNumberM();
@@ -113,7 +113,8 @@ const TimeTableMain = () => {
   };
 
   useEffect(() => {
-    console.log(bar);
+    setBar(bar);
+    console.log("useEffect", bar);
   }, [bar]);
 
   return (
@@ -211,9 +212,7 @@ const TimeTableMain = () => {
                 <NumberErrorDiv name="errorNum">{errorNum}</NumberErrorDiv>
 
                 <CoverSettingDiv>
-                  <SettingButton onClick={checkSetting2}>
-                    {" "}
-                    {/*cdsfghj*/}
+                  <SettingButton setBar={setBar} onClick={checkSetting2}>
                     설정하기
                   </SettingButton>
                 </CoverSettingDiv>
@@ -223,7 +222,7 @@ const TimeTableMain = () => {
         </CoverModal2Div>
 
         <Bunch1>
-          <TimeTable bar={bar} setBar={setBar} />
+          <TimeTable bar={bar} setBar={setBar} setModal2={setModal2} />
         </Bunch1>
         <Bunch2></Bunch2>
         <Bunch3></Bunch3>
