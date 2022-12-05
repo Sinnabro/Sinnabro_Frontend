@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 import { imgLogo } from "../assets";
 
-// 변수 선언
+// 쿠키 선언
 let cookie = false; // true : 로그인 후, false : 로그인 전
 
 const Header = () => {
@@ -83,64 +83,69 @@ const Header = () => {
   }, []);
 
   return (
-    <Div>
-      <LnTDiv cookie={cookie}>
-        <CoverIMGLogoLink to="/beforelogin" cookie={cookie}>
-          <IMGLogo src={imgLogo} alt="IMGLogo" />
-        </CoverIMGLogoLink>
+    <Wrapper>
+      <Container1 cookie={cookie}>
+        <Link to="beforelogin">
+          <Img1 src={imgLogo} alt="IMGLogo" />
+        </Link>
 
-        <CoverTextsDiv cookie={cookie}>
-          <TextsDiv>
-            <MainLink to="/main">메인페이지</MainLink>
-            <WholeLink to="/studentwhole">학생전체보기</WholeLink>
-            <StudyLink to="/studyplanner">스터디플래너</StudyLink>
-            <MyPageLink to="/mypage">마이페이지</MyPageLink>
-          </TextsDiv>
-        </CoverTextsDiv>
-      </LnTDiv>
+        <CookieTrue cookie={cookie}>
+          <Texts>
+            <Main to="/main">메인 페이지</Main>
+            <Student to="/studentwhole">학생전체보기</Student>
+            <StudyPlanner to="/studyplanner">스터디플래너</StudyPlanner>
+            <MyPage to="/mypage">마이페이지</MyPage>
+          </Texts>
+        </CookieTrue>
+      </Container1>
 
-      <CoverLnSDiv cookie={cookie}>
-        <LnSDiv>
+      <CookieFalse cookie={cookie} style={{ marginRight: "8%" }}>
+        <Container2>
           <Link to="/login">
-            <LogInButton>로그인</LogInButton>
+            <LogInBt>로그인</LogInBt>
           </Link>
 
-          <Link to="/signup">
-            <SignUpButton>회원가입</SignUpButton>
+          <Link to="signup">
+            <SignUpBt>회원가입</SignUpBt>
           </Link>
-        </LnSDiv>
-      </CoverLnSDiv>
+        </Container2>
+      </CookieFalse>
 
-      <CoverTimeDiv cookie={cookie}>
-        <TimeDiv>{`${date} | ${clock}`}</TimeDiv>
-      </CoverTimeDiv>
-    </Div>
+      <CookieTrue cookie={cookie} style={{ marginRight: "8%" }}>
+        <Time>{`${date} I ${clock}`}</Time>
+      </CookieTrue>
+    </Wrapper>
   );
 };
 
-// css variable
-const buttonStyle = {
-  width: "150px",
-  height: "50px",
-  fontSize: "20px",
-  fontFamily: "Inter",
-  fontStyle: "normal",
-  fontWeight: 700,
-  border: "2px solid #4263EB",
-  borderRadius: "30px",
-};
+export default Header;
 
+// css variable
 const linkStyle = {
   fontSize: "22px",
   color: "#000000",
-  fontFamily: "Inter",
-  fontStyle: "normal",
   fontWeight: 700,
   textDecoration: "none",
 };
 
+const btStyle = {
+  width: "150px",
+  height: "50px",
+  fontSize: "20px",
+  fontWeight: 700,
+  border: "2px solid #4263eb",
+  borderRadius: "30px",
+};
+
 // styled-components
-const Div = styled.div`
+const CookieTrue = styled.div`
+  display: ${({ cookie }) => (cookie ? "block" : "none")};
+`;
+const CookieFalse = styled.div`
+  display: ${({ cookie }) => (cookie ? "none" : "block")};
+`;
+
+const Wrapper = styled.div`
   position: fixed;
   width: 100vw;
   height: 100px;
@@ -150,73 +155,53 @@ const Div = styled.div`
   background-color: #ffffff;
   border-bottom: 1px solid #808080;
 `;
-const LnTDiv = styled.div`
+const Container1 = styled.div`
   margin-left: 8%;
   width: ${({ cookie }) => (cookie ? "882px" : "224px")};
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-
-const CoverIMGLogoLink = styled(Link)`
-  width: 224px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const IMGLogo = styled.img`
+const Img1 = styled.img`
   width: 224px;
 `;
-
-const CoverTextsDiv = styled.div`
-  display: ${({ cookie }) => (cookie ? "block" : "none")};
-`;
-const TextsDiv = styled.div`
+const Texts = styled.div`
   width: 598px;
   display: flex;
   justify-content: space-between;
 `;
 
-const MainLink = styled(Link)`
+const Main = styled(Link)`
   ${linkStyle}
 `;
-const WholeLink = styled(Link)`
+const Student = styled(Link)`
   ${linkStyle}
 `;
-const StudyLink = styled(Link)`
+const StudyPlanner = styled(Link)`
   ${linkStyle}
 `;
-const MyPageLink = styled(Link)`
+const MyPage = styled(Link)`
   ${linkStyle}
 `;
 
-const CoverLnSDiv = styled.div`
-  margin-right: 8%;
-  display: ${({ cookie }) => (cookie ? "none" : "block")};
-`;
-const LnSDiv = styled.div`
+const Container2 = styled.div`
   width: 320px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 `;
-
-const LogInButton = styled.button`
+const LogInBt = styled.button`
   color: #ffffff;
   background-color: #4263eb;
-  ${buttonStyle}
+  ${btStyle}
 `;
-const SignUpButton = styled.button`
+const SignUpBt = styled.button`
   color: #4263eb;
   background-color: #ffffff;
-  ${buttonStyle}
+  ${btStyle}
 `;
 
-const CoverTimeDiv = styled.div`
-  margin-right: 8%;
-  display: ${({ cookie }) => (cookie ? "block" : "none")};
-`;
-const TimeDiv = styled.div`
+const Time = styled.div`
   width: 283px;
   height: 60px;
   display: flex;
@@ -224,12 +209,8 @@ const TimeDiv = styled.div`
   align-items: center;
   font-size: 20px;
   color: #4263eb;
-  font-family: "Inter";
-  font-style: normal;
   font-weight: 700;
   background-color: #ffffff;
   border: 2px solid #4263eb;
   border-radius: 30px;
 `;
-
-export default Header;
