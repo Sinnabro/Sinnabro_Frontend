@@ -15,7 +15,7 @@ const Graph = ({ bar, setBar }) => {
   );
 };
 
-const TimeTable = ({ bar, setBar }) => {
+const TimeTable = ({ bar, setBar, setModal2 }) => {
   const arr = [
     5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
     1, 2, 3, 4,
@@ -29,10 +29,16 @@ const TimeTable = ({ bar, setBar }) => {
       </TitleDiv>
 
       <BodyDiv>
-        {arr.map((i) => {
+        {arr.map((i, idx) => {
           return (
-            <GDiv key={i}>
-              <P>{i}</P>
+            <GDiv key={idx}>
+              <Bt
+                onClick={() => {
+                  setModal2(true);
+                }}
+              >
+                {i}
+              </Bt>
               <Graph bar={bar} setBar={setBar} />
             </GDiv>
           );
@@ -98,7 +104,7 @@ const GDiv = styled.div`
   align-items: center;
 `;
 
-const P = styled.p`
+const Bt = styled.button`
   width: 18px;
   display: flex;
   justify-content: center;
@@ -107,6 +113,8 @@ const P = styled.p`
   font-style: normal;
   font-weight: 500;
   color: #808080;
+  background-color: transparent;
+  border: none;
 `;
 
 // const Img = styled.img`
