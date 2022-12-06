@@ -146,6 +146,7 @@ const CookieFalse = styled.div`
 `;
 
 const Wrapper = styled.div`
+  z-index: 10000;
   position: fixed;
   width: 100vw;
   height: 100px;
