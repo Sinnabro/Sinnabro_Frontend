@@ -15,17 +15,18 @@ import NotFound from "./pages/Error";
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/user" element={<DayUser />} />
-        <Route path="/" element={<BeforeLogin />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/mypage" element={<Mypage />} />
-        {/* <Route path="/signup" element={<SignUp />} />
+        <Route element={<Header />}>
+          <Route path="/user" element={<DayUser />} />
+          <Route path="/" element={<BeforeLogin />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/mypage" element={<Mypage />} />
+          {/* <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/revisionpw" element={<RevisionPw />} />
-        <Route path="/findpw" element={<FindPw />} /> */}
-        <Route path="/view" element={<ViewMain />} />
+      <Route path="/findpw" element={<FindPw />} /> */}
+          <Route path="/view" element={<ViewMain />} />
+        </Route>
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { imgLogo } from "../assets";
@@ -83,38 +83,41 @@ const Header = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <Container1 cookie={cookie}>
-        <Link to="beforelogin">
-          <Img1 src={imgLogo} alt="IMGLogo" />
-        </Link>
+    <>
+      <Wrapper>
+        <Container1 cookie={cookie}>
+          <Link to="beforelogin">
+            <Img1 src={imgLogo} alt="IMGLogo" />
+          </Link>
 
-        <CookieTrue cookie={cookie}>
-          <Texts>
-            <Main to="/main">메인 페이지</Main>
-            <Student to="/studentwhole">학생전체보기</Student>
-            <StudyPlanner to="/studyplanner">스터디플래너</StudyPlanner>
-            <MyPage to="/mypage">마이페이지</MyPage>
-          </Texts>
+          <CookieTrue cookie={cookie}>
+            <Texts>
+              <Main to="/main">메인 페이지</Main>
+              <Student to="/studentwhole">학생전체보기</Student>
+              <StudyPlanner to="/studyplanner">스터디플래너</StudyPlanner>
+              <MyPage to="/mypage">마이페이지</MyPage>
+            </Texts>
+          </CookieTrue>
+        </Container1>
+
+        <CookieFalse cookie={cookie} style={{ marginRight: "8%" }}>
+          <Container2>
+            <Link to="/login">
+              <LogInBt>로그인</LogInBt>
+            </Link>
+
+            <Link to="signup">
+              <SignUpBt>회원가입</SignUpBt>
+            </Link>
+          </Container2>
+        </CookieFalse>
+
+        <CookieTrue cookie={cookie} style={{ marginRight: "8%" }}>
+          <Time>{`${date} I ${clock}`}</Time>
         </CookieTrue>
-      </Container1>
-
-      <CookieFalse cookie={cookie} style={{ marginRight: "8%" }}>
-        <Container2>
-          <Link to="/login">
-            <LogInBt>로그인</LogInBt>
-          </Link>
-
-          <Link to="signup">
-            <SignUpBt>회원가입</SignUpBt>
-          </Link>
-        </Container2>
-      </CookieFalse>
-
-      <CookieTrue cookie={cookie} style={{ marginRight: "8%" }}>
-        <Time>{`${date} I ${clock}`}</Time>
-      </CookieTrue>
-    </Wrapper>
+      </Wrapper>
+      <Outlet />
+    </>
   );
 };
 
