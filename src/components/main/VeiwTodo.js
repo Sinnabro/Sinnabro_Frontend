@@ -1,13 +1,55 @@
 import styled from "styled-components";
 import { checkbox, checkedBox } from "../../assets";
 
-const VeiwTodo = ({ data }) => {
+const VeiwTodo = () => {
+  let data = [
+    {
+      todo_id: 1,
+      writer: 1,
+      sub: "영어",
+      content: "중등고난도 영단어 외우기",
+      check: 1,
+      createdAt: "2022-10-06",
+    },
+    {
+      todo_id: 1,
+      writer: 1,
+      sub: "영어",
+      content: "중등고난도 영단d어 외우기",
+      check: 0,
+      createdAt: "2022-10-06",
+    },
+    {
+      todo_id: 1,
+      writer: 1,
+      sub: "영어",
+      content: "중등고난도 영단efwer어 외우기",
+      check: 0,
+      createdAt: "2022-10-06",
+    },
+    {
+      todo_id: 1,
+      writer: 1,
+      sub: "영어",
+      content: "중등고난도 영단어 외우기",
+      check: 1,
+      createdAt: "2022-10-06",
+    },
+    {
+      todo_id: 1,
+      writer: 1,
+      sub: "영어",
+      content: "중등고난도 영단d어 외우기",
+      check: 0,
+      createdAt: "2022-10-06",
+    },
+  ];
   return (
     <Wrapper>
       <Title>To Do List</Title>
       <Hr />
       <TodoWrapper>
-        {data.map((value,i) => {
+        {data.map((value, i) => {
           return (
             <EachTodo key={i}>
               {value.check ? (

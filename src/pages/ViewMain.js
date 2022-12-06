@@ -4,7 +4,6 @@ import Todo from "../components/view/Todo";
 import Comment from "../components/view/Comment";
 import DDay from "../components/DDay";
 import { DDayPencil } from "../assets";
-import UserTimeTable from "../components/mypage/UserTimeTable";
 import TimeTableMain from "./TimeTableMain";
 import Temporary from "../components/Temporary";
 

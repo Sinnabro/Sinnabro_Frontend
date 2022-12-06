@@ -20,48 +20,7 @@ const Main = () => {
     }
   }, [day]);
 
-  let TodoData = [
-    {
-      todo_id: 1,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단어 외우기",
-      check: 1,
-      createdAt: "2022-10-06",
-    },
-    {
-      todo_id: 1,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단d어 외우기",
-      check: 0,
-      createdAt: "2022-10-06",
-    },
-    {
-      todo_id: 1,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단efwer어 외우기",
-      check: 0,
-      createdAt: "2022-10-06",
-    },
-    {
-      todo_id: 1,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단어 외우기",
-      check: 1,
-      createdAt: "2022-10-06",
-    },
-    {
-      todo_id: 1,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단d어 외우기",
-      check: 0,
-      createdAt: "2022-10-06",
-    },
-  ];
+
 
   return (
     <>
@@ -72,10 +31,9 @@ const Main = () => {
             <DDay height="200px" />
           </Go>
           <Go to="/">
-            <VeiwTodo data={TodoData} />
+            <VeiwTodo />
           </Go>
         </Left>
-        {/* <Calendar /> */}
         <LeftCalendar day={day} setDay={setDay} />
       </All>
     </>

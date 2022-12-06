@@ -1,13 +1,65 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+const UserTimeTable = () => {
+  const data = [
+    {
+      day: "2022.11.01",
+      good: "123",
+    },
+    {
+      day: "2022.11.02",
+      good: "123",
+    },
+    {
+      day: "2022.11.03",
+      good: "123",
+    },
+    {
+      day: "2022.11.04",
+      good: "123",
+    },
+    {
+      day: "2022.11.05",
+      good: "123",
+    },
+    {
+      day: "2022.11.06",
+      good: "123",
+    },
+    {
+      day: "2022.11.07",
+      good: "123",
+    },
+    {
+      day: "2022.11.08",
+      good: "123",
+    },
+    {
+      day: "2022.11.09",
+      good: "123",
+    },
+    {
+      day: "2022.11.10",
+      good: "123",
+    },
+    {
+      day: "2022.11.11",
+      good: "123",
+    },
+  ];
 
-const UserTimeTable = ({
-  data,
-  setMonthValue,
-  setYearValue,
-  yearValue,
-  setSelectValue,
-}) => {
   const NowDay = new Date();
+  const [monthValue, setMonthValue] = useState(NowDay.getMonth() + 1);
+  const [yearValue, setYearValue] = useState(NowDay.getFullYear());
+  const [selectValue, setSelectValue] = useState();
+
+  useEffect(() => {
+    if (selectValue !== undefined) console.log(selectValue);
+  }, [selectValue]);
+
+  useEffect(() => {
+    console.log(yearValue, monthValue);
+  }, [yearValue, monthValue]);
 
   return (
     <Wrapper>
