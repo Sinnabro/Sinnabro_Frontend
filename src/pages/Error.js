@@ -10,7 +10,7 @@ const NotFound = () => {
   );
 };
 const Div = styled.img`
-  margin-top: 70px;
+  margin-top: 90px;
   width: 70%;
   margin-left: 5%;
 `;
@@ -19,5 +19,6 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-top: 160px;
 `;
 export default NotFound;

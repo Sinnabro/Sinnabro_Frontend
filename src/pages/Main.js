@@ -4,6 +4,7 @@ import styled from "styled-components";
 import DDay from "../components/DDay";
 import LeftCalendar from "../components/main/Calendar/LeftCalendar";
 import VeiwTodo from "../components/main/VeiwTodo";
+import Temporary from "../components/Temporary";
 
 const Main = () => {
   const [day, setDay] = useState(new Date());
@@ -64,6 +65,7 @@ const Main = () => {
 
   return (
     <>
+      <Temporary />
       <All>
         <Left>
           <Go to="/">
@@ -87,7 +89,7 @@ const All = styled.div`
   height: 790px;
   margin: auto;
   display: flex;
-  margin-top: 70px;
+  padding-top: 50px;
   gap: 7%;
 `;
 const Left = styled.div`
