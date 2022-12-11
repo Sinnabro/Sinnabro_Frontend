@@ -2,8 +2,8 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import Header from "../components/Header";
-import { imgLogo, x } from "../assets";
+import Header from "../Header";
+import { imgLogo, x } from "../../assets";
 
 const FindPw = () => {
   // 변수 선언
