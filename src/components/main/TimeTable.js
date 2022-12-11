@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import { bell, pencil, imgLogo, x } from "../../assets";
 
 const Graph = ({ bar, setBar }) => {
-  // 변수 선언
+  // 함수
 
   return (
     <GraphDiv>
@@ -20,6 +20,8 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
   // 변수 선언
   const [errorNum, setErrorNum] = useState(""); // number error message
   let check = true;
+  let arrNum = 0;
+  let arrArr = 0;
 
   // modal remove 함수
   const modalRemove2 = () => {
@@ -68,6 +70,7 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
   const checkSetting2 = () => {
     progress();
     errorNumberM();
+    arrNum = number;
     if (check) {
       setErrorNum("");
       // axios 연동
@@ -97,20 +100,20 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
         </TitleDiv>
 
         <BodyDiv>
-          {arr.map((i) => {
+          {arr.map((v, i) => {
             return (
-              <>
-                <GDiv>
-                  <Bt
-                    onClick={() => {
-                      setModal2(true);
-                    }}
-                  >
-                    {i}
-                  </Bt>
-                  <Graph bar={bar} setBar={setBar} />
-                </GDiv>
-              </>
+              <GDiv key={i}>
+                <Bt
+                  key={i}
+                  onClick={() => {
+                    setModal2(true);
+                    // arrArr = i;
+                  }}
+                >
+                  {v}
+                </Bt>
+                <Graph bar={bar} setBar={setBar} key={v} i={i} />
+              </GDiv>
             );
           })}
         </BodyDiv>
@@ -152,7 +155,11 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
               <NumberErrorDiv name="errorNum">{errorNum}</NumberErrorDiv>
 
               <CoverSettingDiv>
-                <SettingButton setBar={setBar} onClick={checkSetting2}>
+                <SettingButton
+                  setBar={setBar}
+                  bar={bar}
+                  onClick={checkSetting2}
+                >
                   설정하기
                 </SettingButton>
               </CoverSettingDiv>
