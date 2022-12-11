@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 import { imgLogo } from "../assets";
@@ -83,59 +83,61 @@ const Header = () => {
   }, []);
 
   return (
-    <Wrapper>
-      <Container1 cookie={cookie}>
-        <Link to="beforelogin">
-          <Img1 src={imgLogo} alt="IMGLogo" />
-        </Link>
+    <>
+      <Wrapper>
+        <Container1 cookie={cookie}>
+          <Link to="beforelogin">
+            <Img1 src={imgLogo} alt="IMGLogo" />
+          </Link>
 
-        <CookieTrue cookie={cookie}>
-          <Texts>
-            <Main to="/main">메인 페이지</Main>
-            <Student to="/studentwhole">학생전체보기</Student>
-            <StudyPlanner to="/studyplanner">스터디플래너</StudyPlanner>
-            <MyPage to="/mypage">마이페이지</MyPage>
-          </Texts>
+          <CookieTrue cookie={cookie}>
+            <Texts>
+              <Textin to="/main">메인 페이지</Textin>
+              <Textin to="/studentwhole">학생전체보기</Textin>
+              <Textin to="/studyplanner">스터디플래너</Textin>
+              <Textin to="/mypage">마이페이지</Textin>
+            </Texts>
+          </CookieTrue>
+        </Container1>
+
+        <CookieFalse cookie={cookie} style={{ marginRight: "8%" }}>
+          <Container2>
+            <Link to="/login">
+              <LogInBt>로그인</LogInBt>
+            </Link>
+
+            <Link to="signup">
+              <SignUpBt>회원가입</SignUpBt>
+            </Link>
+          </Container2>
+        </CookieFalse>
+
+        <CookieTrue cookie={cookie} style={{ marginRight: "8%" }}>
+          <Time>{`${date} I ${clock}`}</Time>
         </CookieTrue>
-      </Container1>
-
-      <CookieFalse cookie={cookie} style={{ marginRight: "8%" }}>
-        <Container2>
-          <Link to="/login">
-            <LogInBt>로그인</LogInBt>
-          </Link>
-
-          <Link to="signup">
-            <SignUpBt>회원가입</SignUpBt>
-          </Link>
-        </Container2>
-      </CookieFalse>
-
-      <CookieTrue cookie={cookie} style={{ marginRight: "8%" }}>
-        <Time>{`${date} I ${clock}`}</Time>
-      </CookieTrue>
-    </Wrapper>
+      </Wrapper>
+      <Outlet />
+    </>
   );
 };
 
 export default Header;
 
 // css variable
-const linkStyle = {
-  fontSize: "22px",
-  color: "#000000",
-  fontWeight: 700,
-  textDecoration: "none",
-};
-
-const btStyle = {
-  width: "150px",
-  height: "50px",
-  fontSize: "20px",
-  fontWeight: 700,
-  border: "2px solid #4263eb",
-  borderRadius: "30px",
-};
+const linkStyle = styled(Link)`
+  font-size: 22px;
+  color: #000000;
+  font-weight: 700;
+  text-decoration: none;
+`;
+const btStyle = styled.button`
+  width: 150px;
+  height: 50px;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid #4263eb;
+  border-radius: 30px;
+`;
 
 // styled-components
 const CookieTrue = styled.div`
@@ -172,18 +174,7 @@ const Texts = styled.div`
   justify-content: space-between;
 `;
 
-const Main = styled(Link)`
-  ${linkStyle}
-`;
-const Student = styled(Link)`
-  ${linkStyle}
-`;
-const StudyPlanner = styled(Link)`
-  ${linkStyle}
-`;
-const MyPage = styled(Link)`
-  ${linkStyle}
-`;
+const Textin = styled(linkStyle)``;
 
 const Container2 = styled.div`
   width: 320px;
@@ -191,15 +182,13 @@ const Container2 = styled.div`
   justify-content: space-between;
   align-items: center;
 `;
-const LogInBt = styled.button`
+const LogInBt = styled(btStyle)`
   color: #ffffff;
   background-color: #4263eb;
-  ${btStyle}
 `;
-const SignUpBt = styled.button`
+const SignUpBt = styled(btStyle)`
   color: #4263eb;
   background-color: #ffffff;
-  ${btStyle}
 `;
 
 const Time = styled.div`
