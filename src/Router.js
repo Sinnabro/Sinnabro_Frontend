@@ -15,12 +15,13 @@ import NotFound from "./pages/Error";
 const Router = () => {
   return (
     <BrowserRouter>
-      <Header />
       <Routes>
-        <Route path="/user" element={<DayUser />} />
-        <Route path="/" element={<BeforeLogin />} />
-        <Route path="/main" element={<Main />} />
-        <Route path="/mypage" element={<Mypage />} />
+        <Route element={<Header />}>
+          <Route path="/user" element={<DayUser />} />
+          <Route path="/" element={<BeforeLogin />} />
+          <Route path="/main" element={<Main />} />
+          <Route path="/mypage" element={<Mypage />} />
+        </Route>
         {/* <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<LogIn />} />
         <Route path="/revisionpw" element={<RevisionPw />} />
