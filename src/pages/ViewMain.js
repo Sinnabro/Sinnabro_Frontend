@@ -14,7 +14,9 @@ import { imgLogo, x } from "../assets";
 const ViewMain = () => {
   // 변수 선언
   let check = true;
-  const [bar, setBar] = useState(0);
+  const [bar, setBar] = useState([
+    0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+  ]);
 
   // modal
   const [modal1, setModal1] = useState(false);
@@ -31,15 +33,14 @@ const ViewMain = () => {
   // error message 변수
   const [errorN, setErrorN] = useState(""); // name error message
   const [errorD, setErrorD] = useState(""); // date error message
-  const [errorNum, setErrorNum] = useState(""); // number error message
+  // const [errorNum, setErrorNum] = useState(""); // number error message
 
   // input value 변수
   const [inputs, setInputs] = useState({
     name: "",
     date: "",
-    number: "",
   });
-  const { name, date, number } = inputs;
+  const { name, date } = inputs;
 
   // input value가 바뀔 때마다 전달
   const change = (e) => {
@@ -50,16 +51,16 @@ const ViewMain = () => {
   };
 
   // error message 보내주는 함수들
-  // number
-  const errorNumberM = () => {
-    if (number === "") {
-      setErrorNum("숫자를 입력해 주세요.");
-      check = false;
-    } else {
-      setErrorNum("");
-      setModal2(false);
-    }
-  };
+  // // number
+  // const errorNumberM = () => {
+  //   if (number === "") {
+  //     setErrorNum("숫자를 입력해 주세요.");
+  //     check = false;
+  //   } else {
+  //     setErrorNum("");
+  //     setModal2(false);
+  //   }
+  // };
   // 1. name
   const errorNameM = () => {
     // 디데이 이름 입력 안 했을 때
@@ -95,33 +96,33 @@ const ViewMain = () => {
     }
   };
 
-  // 그래프 길이 조절 함수
-  const progress = () => {
-    let i = 0;
+  // // 그래프 길이 조절 함수
+  // const progress = () => {
+  //   let i = 0;
 
-    setInterval(() => {
-      if (i <= number) {
-        setBar(`${(i * 5) / 3}%`);
-        i++;
-      } else {
-        clearInterval();
-      }
-    }, 16);
-  };
+  //   setInterval(() => {
+  //     if (i <= number) {
+  //       setBar(`${(i * 5) / 3}%`);
+  //       i++;
+  //     } else {
+  //       clearInterval();
+  //     }
+  //   }, 16);
+  // };
 
-  const checkSetting2 = () => {
-    progress();
-    errorNumberM();
-    if (check) {
-      setErrorNum("");
-      // axios 연동
-    }
-  };
+  // const checkSetting2 = () => {
+  //   progress();
+  //   errorNumberM();
+  //   if (check) {
+  //     setErrorNum("");
+  //     // axios 연동
+  //   }
+  // };
 
-  useEffect(() => {
-    setBar(bar);
-    // console.log("useEffect", bar);
-  }, [bar]);
+  // useEffect(() => {
+  //   setBar(bar);
+  //   // console.log("useEffect", bar);
+  // }, [bar]);
   return (
     <>
       <Temporary />
