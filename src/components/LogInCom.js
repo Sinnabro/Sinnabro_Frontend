@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import Header from "../components/Header";
 import { imgLogo } from "../assets";
 
-const LogIn = () => {
+const LogInCom = () => {
   // 변수 선언
   let check = true;
 
@@ -87,51 +86,55 @@ const LogIn = () => {
   };
 
   return (
-    <Div>
-      <BoxDiv>
-        <TitleLink to="/beforelogin">
-          <IMGLogo src={imgLogo} alt="IMGLogo" />
-        </TitleLink>
+    <CoverDiv>
+      <Div>
+        <BoxDiv>
+          <TitleLink to="/beforelogin">
+            <IMGLogo src={imgLogo} alt="IMGLogo" />
+          </TitleLink>
 
-        <LogInP>로그인</LogInP>
+          <LogInP>로그인</LogInP>
 
-        <BodyDiv>
-          <EmailDiv>
-            <InputTitleDiv>
-              <TitleP>이메일</TitleP>
-            </InputTitleDiv>
-            <EmailInput
-              onChange={change}
-              name="email"
-              value={email}
-              type="email"
-              placeholder="이메일"
-            />
-            <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
-          </EmailDiv>
+          <BodyDiv>
+            <EmailDiv>
+              <InputTitleDiv>
+                <TitleP>이메일</TitleP>
+              </InputTitleDiv>
+              <EmailInput
+                onChange={change}
+                name="email"
+                value={email}
+                type="email"
+                placeholder="이메일"
+              />
+              <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
+            </EmailDiv>
 
-          <PwDiv>
-            <InputTitleDiv>
-              <TitleP>비밀번호</TitleP>
-            </InputTitleDiv>
-            <PwInput
-              onChange={change}
-              name="pw"
-              value={pw}
-              type="password"
-              placeholder="비밀번호"
-            />
-            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-          </PwDiv>
+            <PwDiv>
+              <InputTitleDiv>
+                <TitleP>비밀번호</TitleP>
+              </InputTitleDiv>
+              <PwInput
+                onChange={change}
+                name="pw"
+                value={pw}
+                type="password"
+                placeholder="비밀번호"
+              />
+              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+            </PwDiv>
 
-          <LogInButton onClick={checkLogIn}>로그인</LogInButton>
+            <LogInButton onClick={checkLogIn}>로그인</LogInButton>
 
-          <CoverGoFindPwDiv>
-            <GoFindPwLink to="/findpw">비밀번호를 잊어버리셨나요?</GoFindPwLink>
-          </CoverGoFindPwDiv>
-        </BodyDiv>
-      </BoxDiv>
-    </Div>
+            <CoverGoFindPwDiv>
+              <GoFindPwLink to="/findpw">
+                비밀번호를 잊어버리셨나요?
+              </GoFindPwLink>
+            </CoverGoFindPwDiv>
+          </BodyDiv>
+        </BoxDiv>
+      </Div>
+    </CoverDiv>
   );
 };
 
@@ -164,11 +167,14 @@ const inputStyle = {
 };
 
 // styled-components
-const Div = styled.div`
+const CoverDiv = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
+`;
+const Div = styled.div`
+  margin-top: 225px;
 `;
 const BoxDiv = styled.div`
   width: 662px;
@@ -287,4 +293,4 @@ const GoFindPwLink = styled(Link)`
   }
 `;
 
-export default LogIn;
+export default LogInCom;
