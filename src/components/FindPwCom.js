@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import Header from "../components/Header";
 import { imgLogo, x } from "../assets";
 
-const FindPw = () => {
+const FindPwCom = () => {
   // 변수 선언
   let check = true;
   let numberComfirm = 0;
@@ -155,107 +154,109 @@ const FindPw = () => {
   };
 
   return (
-    <Div>
-      <CoverModalDiv modal={modal}>
-        <ModalDiv>
-          <EmailConfirmDiv>
-            <ECTitleDiv>
-              <ModalImgsDiv>
-                <Link to="/beforelogin">
-                  <IMGLogo src={imgLogo} alt="IMGLogo" />
-                </Link>
+    <CoverDiv>
+      <Div>
+        <CoverModalDiv modal={modal}>
+          <ModalDiv>
+            <EmailConfirmDiv>
+              <ECTitleDiv>
+                <ModalImgsDiv>
+                  <Link to="/beforelogin">
+                    <IMGLogo src={imgLogo} alt="IMGLogo" />
+                  </Link>
 
-                <XButton onClick={modalRemove}>
-                  <X src={x} alt="X" />
-                </XButton>
-              </ModalImgsDiv>
-            </ECTitleDiv>
+                  <XButton onClick={modalRemove}>
+                    <X src={x} alt="X" />
+                  </XButton>
+                </ModalImgsDiv>
+              </ECTitleDiv>
 
-            <ModalBodyDiv>
-              <TitleP
-                style={{
-                  marginBottom: "25px",
-                  color: "#000000",
-                }}
-              >
-                이메일 인증하기
-              </TitleP>
-              <EmailConfirmInput
+              <ModalBodyDiv>
+                <TitleP
+                  style={{
+                    marginBottom: "25px",
+                    color: "#000000",
+                  }}
+                >
+                  이메일 인증하기
+                </TitleP>
+                <EmailConfirmInput
+                  onChange={change}
+                  name="emailConfirm"
+                  value={emailConfirm}
+                  type="text"
+                  placeholder="인증번호 6자리를 입력해 주세요."
+                />
+                <EmailConfirmErrorDiv name="errorEC">
+                  {errorEC}
+                </EmailConfirmErrorDiv>
+
+                <CoverSendDiv>
+                  <SendButton onClick={sendEmail}>전송하기</SendButton>
+                </CoverSendDiv>
+              </ModalBodyDiv>
+            </EmailConfirmDiv>
+          </ModalDiv>
+        </CoverModalDiv>
+
+        <BoxDiv>
+          <TitleLink to="beforelogin">
+            <IMGLogo src={imgLogo} alt="IMGLogo" />
+          </TitleLink>
+
+          <FindPwP>비밀번호 재설정</FindPwP>
+
+          <BodyDiv>
+            <EmailDiv>
+              <InputTitleDiv>
+                <TitleP>이메일</TitleP>
+                <ConfirmButton onClick={confirm}>인증하기</ConfirmButton>
+              </InputTitleDiv>
+              <EmailInput
                 onChange={change}
-                name="emailConfirm"
-                value={emailConfirm}
-                type="text"
-                placeholder="인증번호 6자리를 입력해 주세요."
+                name="email"
+                value={email}
+                type="email"
+                placeholder="이메일"
               />
-              <EmailConfirmErrorDiv name="errorEC">
-                {errorEC}
-              </EmailConfirmErrorDiv>
+              <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
+            </EmailDiv>
 
-              <CoverSendDiv>
-                <SendButton onClick={sendEmail}>전송하기</SendButton>
-              </CoverSendDiv>
-            </ModalBodyDiv>
-          </EmailConfirmDiv>
-        </ModalDiv>
-      </CoverModalDiv>
+            <PwDiv>
+              <InputTitleDiv>
+                <TitleP>새 비밀번호</TitleP>
+              </InputTitleDiv>
+              <PwInput
+                onChange={change}
+                name="pw"
+                value={pw}
+                type="password"
+                placeholder="비밀번호"
+              />
+              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+            </PwDiv>
 
-      <BoxDiv>
-        <TitleLink to="beforelogin">
-          <IMGLogo src={imgLogo} alt="IMGLogo" />
-        </TitleLink>
+            <CheckPwDiv>
+              <InputTitleDiv>
+                <TitleP>비밀번호 확인</TitleP>
+              </InputTitleDiv>
+              <CheckPwInput
+                onChange={change}
+                name="checkPw"
+                value={checkPw}
+                type="password"
+                placeholder="비밀번호 확인"
+              />
+              <CheckPwErrorDiv name="errorCP">{errorCP}</CheckPwErrorDiv>
+            </CheckPwDiv>
 
-        <FindPwP>비밀번호 재설정</FindPwP>
-
-        <BodyDiv>
-          <EmailDiv>
-            <InputTitleDiv>
-              <TitleP>이메일</TitleP>
-              <ConfirmButton onClick={confirm}>인증하기</ConfirmButton>
-            </InputTitleDiv>
-            <EmailInput
-              onChange={change}
-              name="email"
-              value={email}
-              type="email"
-              placeholder="이메일"
-            />
-            <EmailErrorDiv name="errorE">{errorE}</EmailErrorDiv>
-          </EmailDiv>
-
-          <PwDiv>
-            <InputTitleDiv>
-              <TitleP>새 비밀번호</TitleP>
-            </InputTitleDiv>
-            <PwInput
-              onChange={change}
-              name="pw"
-              value={pw}
-              type="password"
-              placeholder="비밀번호"
-            />
-            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-          </PwDiv>
-
-          <CheckPwDiv>
-            <InputTitleDiv>
-              <TitleP>비밀번호 확인</TitleP>
-            </InputTitleDiv>
-            <CheckPwInput
-              onChange={change}
-              name="checkPw"
-              value={checkPw}
-              type="password"
-              placeholder="비밀번호 확인"
-            />
-            <CheckPwErrorDiv name="errorCP">{errorCP}</CheckPwErrorDiv>
-          </CheckPwDiv>
-
-          <RevisionPwButton onClick={checkRevisionPw}>
-            비밀번호 수정
-          </RevisionPwButton>
-        </BodyDiv>
-      </BoxDiv>
-    </Div>
+            <RevisionPwButton onClick={checkRevisionPw}>
+              비밀번호 수정
+            </RevisionPwButton>
+          </BodyDiv>
+        </BoxDiv>
+      </Div>
+    </CoverDiv>
   );
 };
 
@@ -309,11 +310,14 @@ const hoverButtonStyle = {
 };
 
 // styled-components
-const Div = styled.div`
+const CoverDiv = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
+`;
+const Div = styled.div`
+  margin-top: 180px;
 `;
 
 const CoverModalDiv = styled.div`
@@ -506,4 +510,4 @@ const RevisionPwButton = styled.button`
   }
 `;
 
-export default FindPw;
+export default FindPwCom;
