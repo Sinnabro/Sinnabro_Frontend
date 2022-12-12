@@ -2,10 +2,9 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-import Header from "../components/Header";
 import { imgLogo } from "../assets";
 
-const RevisionPw = () => {
+const RevisionPwCom = () => {
   // 변수 선언
   let check = true;
 
@@ -77,58 +76,62 @@ const RevisionPw = () => {
   };
 
   return (
-    <Div>
-      <BoxDiv>
-        <TitleLink to="/beforelogin">
-          <IMGLogo src={imgLogo} alt="IMGLogo" />
-        </TitleLink>
+    <CoverDiv>
+      <Div>
+        <BoxDiv>
+          <TitleLink to="/beforelogin">
+            <IMGLogo src={imgLogo} alt="IMGLogo" />
+          </TitleLink>
 
-        <RevisionPwP>비밀번호 재설정</RevisionPwP>
+          <RevisionPwP>비밀번호 재설정</RevisionPwP>
 
-        <BodyDiv>
-          <PwDiv>
-            <InputTitleDiv>
-              <TitleP>기존 비밀번호</TitleP>
-            </InputTitleDiv>
-            <PwInput
-              onChange={change}
-              name="pw"
-              value={pw}
-              type="password"
-              placeholder="비밀번호"
-            />
-            <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
-          </PwDiv>
-          <NewPwDiv>
-            <InputTitleDiv>
-              <TitleP>새 비밀번호</TitleP>
-            </InputTitleDiv>
-            <NewPwInput
-              onChange={change}
-              name="newPw"
-              value={newPw}
-              type="password"
-              placeholder="새로운 비밀번호"
-            />
-            <NewPwErrorDiv name="errorCP">{errorNP}</NewPwErrorDiv>
-          </NewPwDiv>
-          <CheckNewPwDiv>
-            <InputTitleDiv>
-              <TitleP>비밀번호 확인</TitleP>
-            </InputTitleDiv>
-            <CheckNewPwInput
-              onChange={change}
-              name="checkNewPw"
-              value={checkNewPw}
-              type="password"
-              placeholder="새로운 비밀번호 확인"
-            />
-            <CheckNewPwErrorDiv name="errorCNP">{errorCNP}</CheckNewPwErrorDiv>
-          </CheckNewPwDiv>
-          <RevisionButton onClick={checkRevision}>수정하기</RevisionButton>
-        </BodyDiv>
-      </BoxDiv>
-    </Div>
+          <BodyDiv>
+            <PwDiv>
+              <InputTitleDiv>
+                <TitleP>기존 비밀번호</TitleP>
+              </InputTitleDiv>
+              <PwInput
+                onChange={change}
+                name="pw"
+                value={pw}
+                type="password"
+                placeholder="비밀번호"
+              />
+              <PwErrorDiv name="errorP">{errorP}</PwErrorDiv>
+            </PwDiv>
+            <NewPwDiv>
+              <InputTitleDiv>
+                <TitleP>새 비밀번호</TitleP>
+              </InputTitleDiv>
+              <NewPwInput
+                onChange={change}
+                name="newPw"
+                value={newPw}
+                type="password"
+                placeholder="새로운 비밀번호"
+              />
+              <NewPwErrorDiv name="errorCP">{errorNP}</NewPwErrorDiv>
+            </NewPwDiv>
+            <CheckNewPwDiv>
+              <InputTitleDiv>
+                <TitleP>비밀번호 확인</TitleP>
+              </InputTitleDiv>
+              <CheckNewPwInput
+                onChange={change}
+                name="checkNewPw"
+                value={checkNewPw}
+                type="password"
+                placeholder="새로운 비밀번호 확인"
+              />
+              <CheckNewPwErrorDiv name="errorCNP">
+                {errorCNP}
+              </CheckNewPwErrorDiv>
+            </CheckNewPwDiv>
+            <RevisionButton onClick={checkRevision}>수정하기</RevisionButton>
+          </BodyDiv>
+        </BoxDiv>
+      </Div>
+    </CoverDiv>
   );
 };
 
@@ -161,11 +164,14 @@ const inputStyle = {
 };
 
 // styled-components
-const Div = styled.div`
+const CoverDiv = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
   justify-content: center;
+`;
+const Div = styled.div`
+  margin-top: 180px;
 `;
 const BoxDiv = styled.div`
   width: 662px;
@@ -282,4 +288,4 @@ const RevisionButton = styled.button`
   }
 `;
 
-export default RevisionPw;
+export default RevisionPwCom;
