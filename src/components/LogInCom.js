@@ -1,14 +1,17 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import axios from "axios";
 import { imgLogo } from "../assets";
+const baseUrl = "http://localhost:8080";
+import { useCookies } from "react-cookie"; // useCookies import
 
 const LogInCom = () => {
+  const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
+  const navigate = useNavigate();
+
   // 변수 선언
   let check = true;
-
-  // axios POST
 
   // error message 변수
   const [errorE, setErrorE] = useState(""); //   email error message
@@ -82,12 +85,29 @@ const LogInCom = () => {
       setErrorP("");
 
       // axios 연동
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/login`,
+        data: {
+          email: email,
+          password: pw,
+        },
+      })
+        .then(function (response) {
+          setCookie("accessToken", response.data.accessToken); // 쿠키에 토큰 저장
+          navigate("/");
+        })
+        .catch(function (error) {
+          if (error.response.status === 400) {
+            setErrorP("이메일 또는 비밀번호가 틀렸습니다.");
+          } else alert(`오류 (${error.response.status})`);
+        });
     }
   };
 
   return (
     <CoverDiv>
-      <Div>
+      <div>
         <BoxDiv>
           <TitleLink to="/beforelogin">
             <IMGLogo src={imgLogo} alt="IMGLogo" />
@@ -133,7 +153,7 @@ const LogInCom = () => {
             </CoverGoFindPwDiv>
           </BodyDiv>
         </BoxDiv>
-      </Div>
+      </div>
     </CoverDiv>
   );
 };
@@ -172,9 +192,7 @@ const CoverDiv = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-`;
-const Div = styled.div`
-  margin-top: 225px;
+  align-items: center;
 `;
 const BoxDiv = styled.div`
   width: 662px;

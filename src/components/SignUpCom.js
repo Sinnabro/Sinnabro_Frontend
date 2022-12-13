@@ -1,14 +1,16 @@
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
-
+import axios from "axios";
 import { imgLogo, x } from "../assets";
+
+const baseUrl = "http://localhost:8080";
 
 const SignUpCom = () => {
   // 변수 선언
+  const navigate = useNavigate();
   let check = true;
-  let numberOverlap = 0; // 중복확인 함수 완성 시 삭제
-  let numberSend = 0;
+  const [numberSend, setNumberSend] = useState(0);
 
   // modal
   const [modal, setModal] = useState(false);
@@ -53,25 +55,6 @@ const SignUpCom = () => {
     errorNicknameM();
   };
 
-  // 인증번호 버튼 체크 함수
-  const confirm = () => {
-    // 이메일 입력 안 했을 때
-    if (email === "") {
-      setErrorE("이메일을 입력해 주세요.");
-      check = false;
-    }
-    // 이메일 형식 틀렸을 때
-    else if (!testEmail()) {
-      setErrorE("잘못된 이메일 형식입니다.");
-      check = false;
-    }
-    // 이미 가입되어 있는 이메일 일 때
-    else {
-      setErrorE("");
-      setModal(true);
-    }
-  };
-
   // 이메일 형식 체크 함수
   const testEmail = () => {
     var reg =
@@ -84,8 +67,8 @@ const SignUpCom = () => {
     return true;
   };
 
-  // error message 보내주는 함수들
-  // 1. nickname
+  //_____________연동__________________
+  // nickname // 닉네임 중복 확인
   const errorNicknameM = () => {
     // 닉네임 입력 안 했을 때
     if (nickname === "") {
@@ -95,11 +78,29 @@ const SignUpCom = () => {
     // 중복확인 버튼 안 눌렀을 때
     else {
       setErrorN("");
-      numberOverlap += 1;
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/namecheck`,
+        data: {
+          name: nickname,
+        },
+      })
+        .then(function (response) {
+          check = true;
+          setErrorN("사용할 수 있는 닉네임입니다.");
+        })
+        .catch(function (error) {
+          if (error.response.status === 400) {
+            setErrorN("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠");
+          } else if (error.response.status === 409) {
+            setErrorN("중복된 닉네임입니다.");
+            check = false;
+          } else alert(`오류 (${error.response.status})`);
+        });
     }
   };
 
-  // 2. password & check password
+  // password & check password  비밀번호 재입력값 일치하는지 확인
   const errorPwM = () => {
     // 비밀번호 입력 안 했을 때
     if (pw === "" && checkPw === "") {
@@ -118,7 +119,7 @@ const SignUpCom = () => {
     }
   };
 
-  // 3. email
+  // email 입력 안한 경우 / 형식 / 인증하기 버튼 안누름
   const errorEmailM = () => {
     // 이메일 입력 안 했을 때
     if (email === "") {
@@ -130,32 +131,90 @@ const SignUpCom = () => {
       setErrorE("잘못된 이메일 형식입니다.");
       check = false;
     }
-    // 이미 가입되어 있는 이메일 일 때
-
     // 인증하기 버튼 안 눌렀을 때
-    else if (numberSend === 0) {
-      setErrorE("인증하기 버튼을 눌러주세요.");
+    else if (!numberSend) {
+      setErrorE("이메일 인증을 해주세요.");
+      console.log(numberSend);
       check = false;
     } else {
       setErrorE("");
     }
   };
 
-  // 4. email confirm
+  //_____________연동__________________
+  // 인증번호 발송 함수
+  const confirm = () => {
+    // 이메일 입력 안 했을 때
+    if (email === "") {
+      setErrorE("이메일을 입력해 주세요.");
+      check = false;
+    }
+    // 이메일 형식 틀렸을 때
+    else if (!testEmail()) {
+      setErrorE("잘못된 이메일 형식입니다.");
+      check = false;
+    }
+    // 이메일 인증
+    else {
+      setErrorE("");
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/email`,
+        data: {
+          email: email,
+        },
+      })
+        .then(function (response) {
+          setErrorE("");
+          setModal(true);
+        })
+        .catch(function (error) {
+          if (error.response.status === 400)
+            alert("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠");
+          else if (error.response.status === 404)
+            setErrorE("존재하지 않는 이메일입니다만..");
+          else alert(`오류 (${error.response.status})`);
+        });
+    }
+  };
+
+  //_____________연동__________________
+  // email confirm 인증번호 입력 및 확인
   const errorEmailConfirmM = () => {
     // 인증번호 입력 안 했을 때
     if (emailConfirm === "") {
       setErrorEC("인증번호를 입력해 주세요.");
       check = false;
-    }
-    // 인증번호 틀렸을 때
-    else {
+    } else {
       setErrorEC("");
-      setModal(false);
-      numberSend += 1;
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/verify/${email}`,
+        data: {
+          code: Number(emailConfirm),
+        },
+      })
+        .then(function (response) {
+          setModal(false);
+          setErrorE("이메일 인증 성공입니다.");
+          setNumberSend(100);
+        })
+        .catch(function (error) {
+          if (error.response.status === 400) {
+            if (error.response.data.message == "잘못된 요청입니다.") {
+              setErrorE("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠");
+            } else {
+              setErrorE("인증번호가 알맞지 않습니다.");
+            }
+          } else if (error.response.status === 404) {
+            setErrorE("존재하지 않은 이메일입니다.");
+            check = false;
+          } else alert(`오류 (${error.response.status})`);
+        });
     }
   };
 
+  //_____________연동__________________
   // 회원가입 체크 함수
   const checkSignUp = () => {
     errorNicknameM();
@@ -170,12 +229,32 @@ const SignUpCom = () => {
       setErrorEC("");
 
       // axios 연동
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/signup`,
+        data: {
+          email: email,
+          name: nickname,
+          password: pw,
+        },
+      })
+        .then(function (response) {
+          alert("회원가입에 성공했습니다");
+          navigate("/");
+        })
+        .catch(function (error) {
+          if (error.response.status === 400) {
+            alert("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠");
+          } else if (error.response.status === 409) {
+            alert("이미 존재하는 회원입니다.");
+          } else alert(`오류 (${error.response.status})`);
+        });
     }
   };
 
   return (
     <CoverDiv>
-      <Div>
+      <div>
         <CoverModalDiv modal={modal}>
           <ModalDiv>
             <EmailConfirmDiv>
@@ -290,7 +369,7 @@ const SignUpCom = () => {
             <SignUpButton onClick={checkSignUp}>회원가입</SignUpButton>
           </BodyDiv>
         </BoxDiv>
-      </Div>
+      </div>
     </CoverDiv>
   );
 };
@@ -351,9 +430,7 @@ const CoverDiv = styled.div`
   height: 100vh;
   display: flex;
   justify-content: center;
-`;
-const Div = styled.div`
-  margin-top: 135px;
+  align-items: center;
 `;
 
 const CoverModalDiv = styled.div`
