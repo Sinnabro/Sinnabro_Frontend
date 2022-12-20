@@ -4,8 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 import { imgLogo, x } from "../assets";
 
-const baseUrl = "http://localhost:8080";
-
+const baseUrl = "http://172.20.10.2:8080";
 const SignUpCom = () => {
   // 변수 선언
   const navigate = useNavigate();
@@ -91,7 +90,7 @@ const SignUpCom = () => {
         })
         .catch(function (error) {
           if (error.response.status === 400) {
-            setErrorN("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠");
+            setErrorN("알 수 없는 오류입니다.");
           } else if (error.response.status === 409) {
             setErrorN("중복된 닉네임입니다.");
             check = false;
@@ -108,7 +107,7 @@ const SignUpCom = () => {
       setErrorCP("");
       check = false;
     }
-    // 비밀번호와 비밀번호 확인이 다를 때
+    // 비밀번호가 일치하지 않을 때
     else if (pw !== checkPw) {
       setErrorCP("비밀번호가 일치하지 않습니다.");
       setErrorP("");
@@ -134,7 +133,6 @@ const SignUpCom = () => {
     // 인증하기 버튼 안 눌렀을 때
     else if (!numberSend) {
       setErrorE("이메일 인증을 해주세요.");
-      console.log(numberSend);
       check = false;
     } else {
       setErrorE("");
@@ -157,23 +155,25 @@ const SignUpCom = () => {
     // 이메일 인증
     else {
       setErrorE("");
-      axios({
-        method: "post",
-        url: `${baseUrl}/user/email`,
-        data: {
-          email: email,
-        },
-      })
+      axios
+        .post({
+          url: `${baseUrl}/user/email`,
+          data: {
+            email: email,
+          },
+        })
         .then(function (response) {
           setErrorE("");
           setModal(true);
         })
         .catch(function (error) {
-          if (error.response.status === 400)
-            alert("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠");
-          else if (error.response.status === 404)
-            setErrorE("존재하지 않는 이메일입니다만..");
-          else alert(`오류 (${error.response.status})`);
+          if (error.response.status === 400) {
+            alert("알 수 없는 오류입니다.");
+          } else if (error.response.status === 404) {
+            setErrorE("존재하지 않는 이메일입니다.");
+          } else {
+            alert(`오류 (${error.response.status})`);
+          }
         });
     }
   };
