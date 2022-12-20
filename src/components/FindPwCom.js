@@ -3,6 +3,10 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { imgLogo, x } from "../assets";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+
+const baseUrl = "http://172.20.10.2:8080";
 
 const FindPwCom = () => {
   // 변수 선언
@@ -60,10 +64,29 @@ const FindPwCom = () => {
       setErrorE("잘못된 이메일 형식입니다.");
       check = false;
     }
-    // 이미 가입되어 있는 이메일 일 때
+    // 이메일
     else {
       setErrorE("");
-      setModal(true);
+      axios
+        .post({
+          url: `${baseUrl}/user/email`,
+          data: {
+            email: email,
+          },
+        })
+        .then(function (response) {
+          setErrorE("");
+          setModal(true);
+        })
+        .catch(function (error) {
+          if (error.response.status === 400) {
+            alert("알 수 없는 오류입니다.");
+          } else if (error.response.status === 404) {
+            setErrorE("존재하지 않는 이메일입니다.");
+          } else {
+            alert(`오류 (${error.response.status})`);
+          }
+        });
     }
   };
 
@@ -150,6 +173,24 @@ const FindPwCom = () => {
       setErrorCP("");
 
       // axios 연동
+      axios
+        .patch({
+          url: `${baseUrl}/user/find/${email}`,
+          data: {
+            newpassword: pw,
+          },
+        })
+        .then((response) => {
+          check = true;
+          setErrorCP("비밀번호가 수정되었습니다.");
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            alert("잘못된 요청입니다.");
+          } else if (error.response.status === 404) {
+            alert("존재하지 않는 회원입니다.");
+          }
+        });
     }
   };
 
