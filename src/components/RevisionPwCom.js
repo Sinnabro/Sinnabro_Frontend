@@ -7,6 +7,8 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 const baseUrl = process.env.REACT_APP_BASEURL;
 const RevisionPwCom = () => {
+  const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
+
   // 변수 선언
   let check = true;
   const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
@@ -66,6 +68,8 @@ const RevisionPwCom = () => {
 
   // 비밀번호 수정 체크 함수
   const checkRevision = () => {
+    const token = cookies.accessToken;
+
     errorPwM();
     errorNewPwM();
     const token = cookies.accessToken;
@@ -76,42 +80,6 @@ const RevisionPwCom = () => {
       setErrorCNP("");
 
       // axios 연동
-      axios
-        .patch({
-          url: `${baseUrl}/user/password`,
-          headers: {
-            Authorization: "bearer" + token,
-          },
-          data: {
-            password: pw,
-            new_password: newPw,
-          },
-        })
-        .then((response) => {
-          check = true;
-          setErrorCNP("비밀번호가 수정되었습니다.");
-        })
-        .catch((error) => {
-          if (error.response.status === 400) {
-            if ((error.response.data.message = "잘못된 요청입니다.")) {
-              alert("fail");
-            } else if (
-              (error.response.data.message =
-                "현재 비밀번호가 올바르지 않습니다.")
-            ) {
-              setErrorP("현재 비밀번호가 올바르지 않습니다.");
-            } else if (
-              (error.response.data.message =
-                "현재 비밀번호와 같지 않도록 수정하세요.")
-            ) {
-              setErrorNP("현재 비밀번호와 같지 않도록 수정하세요.");
-            }
-          } else if (error.response.status === 401) {
-            alert(`로그인이 필요합니다. (${error.response.status})`);
-          } else {
-            alert(`오류 ${error.response.status}`);
-          }
-        });
     }
   };
 

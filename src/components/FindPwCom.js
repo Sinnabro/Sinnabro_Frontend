@@ -68,26 +68,7 @@ const FindPwCom = () => {
     // 이메일
     else {
       setErrorE("");
-      axios({
-        method: "post",
-        url: `${baseUrl}/user/email`,
-        data: {
-          email: email,
-        },
-      })
-        .then(function (response) {
-          setErrorE("");
-          setModal(true);
-        })
-        .catch(function (error) {
-          if (error.response.status === 400) {
-            alert("알 수 없는 오류입니다.");
-          } else if (error.response.status === 404) {
-            setErrorE("존재하지 않는 이메일입니다.");
-          } else {
-            alert(`오류 (${error.response.status})`);
-          }
-        });
+      setModal(true);
     }
   };
 
@@ -174,24 +155,6 @@ const FindPwCom = () => {
       setErrorCP("");
 
       // axios 연동
-      axios({
-        method: "patch",
-        url: `${baseUrl}/user/find/${email}`,
-        data: {
-          new_password: pw,
-        },
-      })
-        .then((response) => {
-          check = true;
-          setErrorCP("비밀번호가 수정되었습니다.");
-        })
-        .catch((error) => {
-          if (error.response.status === 400) {
-            alert("잘못된 요청입니다.");
-          } else if (error.response.status === 404) {
-            alert("존재하지 않는 회원입니다.");
-          }
-        });
     }
   };
 

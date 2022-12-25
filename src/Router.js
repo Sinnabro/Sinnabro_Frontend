@@ -23,12 +23,12 @@ const Router = () => {
             <Route path="/" element={<BeforeLogin />} />
             <Route path="/main" element={<Main />} />
             <Route path="/mypage" element={<Mypage />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LogIn />} />
             <Route path="/revisionpw" element={<RevisionPw />} />
             <Route path="/findpw" element={<FindPw />} />
             <Route path="/view/:dayDate/:userName" element={<ViewMain />} />
           </Route>
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/login" element={<LogIn />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

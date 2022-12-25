@@ -6,6 +6,8 @@ import { imgLogo } from "../assets";
 const baseUrl = process.env.REACT_APP_BASEURL;
 import { useCookies } from "react-cookie"; // useCookies import
 
+const baseUrl = "http://172.20.10.2:8080";
+
 const LogInCom = () => {
   const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
   const navigate = useNavigate();
@@ -82,21 +84,21 @@ const LogInCom = () => {
     if (check) {
       setErrorE("");
       setErrorP("");
-
       // axios 연동
-      axios({
-        method: "post",
-        url: `${baseUrl}/user/login`,
-        data: {
-          email: email,
-          password: pw,
-        },
-      })
+      axios
+        .post({
+          url: `${baseUrl}/user/login`,
+          data: {
+            email: email,
+            password: pw,
+          },
+        })
         .then(function (response) {
           setCookie("accessToken", response.data.accessToken); // 쿠키에 토큰 저장
           navigate("/main");
         })
         .catch(function (error) {
+          console.log(error);
           if (error.response.status === 400) {
             setErrorP("이메일 또는 비밀번호가 틀렸습니다.");
           } else alert(`오류 (${error.response.status})`);
