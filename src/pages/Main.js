@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import DDay from "../components/DDay";
 import LeftCalendar from "../components/main/Calendar/LeftCalendar";
@@ -7,20 +7,20 @@ import VeiwTodo from "../components/main/VeiwTodo";
 import Temporary from "../components/Temporary";
 
 const Main = () => {
+  const navigate = useNavigate();
   const [day, setDay] = useState(new Date());
   const [count, setCount] = useState(0);
-
   useEffect(() => {
+    const year = day.getFullYear();
     const month = day.getMonth() + 1;
     const date = day.getDate();
     if (count) {
-      console.log(month, date);
+      navigate("/user/" + year + "-" + month + "-" + date + "/");
+      console.log(year, month, date);
     } else {
       setCount(1);
     }
   }, [day]);
-
-
 
   return (
     <>

@@ -1,34 +1,57 @@
+import axios from "axios";
 import { useState, useEffect } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { deleteBox } from "../../assets/index";
-
+const baseUrl = process.env.REACT_APP_BASEURL;
 const Todo = () => {
-  const data = [
-    {
-      todo_id: 1,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단어 외우기",
-      check: 0,
-      createdAt: "2022-10-06",
-    },
-    {
-      todo_id: 2,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단어 외우기",
-      check: 1,
-      createdAt: "2022-10-06",
-    },
-    {
-      todo_id: 3,
-      writer: 1,
-      sub: "영어",
-      content: "중등고난도 영단어 외우기",
-      check: 0,
-      createdAt: "2022-10-06",
-    },
-  ];
+  const { dayDate, userName } = useParams();
+  const [cookies] = useCookies(["accessToken"]);
+  const token = cookies.accessToken;
+  const navigate = useNavigate();
+  // const data = [
+  //   {
+  //     todo_id: 1,
+  //     writer: 1,
+  //     sub: "영어",
+  //     content: "중등고난도 영단어 외우기",
+  //     check: 0,
+  //     createdAt: "2022-10-06",
+  //   },
+  // ];
+  const [data, setData] = useState([
+    { check: true, todo_id: 1, sub: "수학", content: "수학 시험은 버리기" },
+    { check: false, todo_id: 2, sub: "전공", content: "프로젝트 끝내기" },
+    { check: true, todo_id: 3, sub: "전공", content: "NEXT 공부하기" },
+    { check: false, todo_id: 4, sub: "과학", content: "화학 자기평가서 작성" },
+    { check: false, todo_id: 6, sub: "국어", content: "국어 오답노트 쓰기" },
+    { check: true, todo_id: 5, sub: "휴식", content: "1시간 열심히 놀기" },
+  ]);
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${baseUrl}/todo`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        //data에 값 저장
+      })
+      .catch((err) => {
+        if (err.response.status === 400) {
+          alert("todo err");
+        } else if (err.response.status === 401) {
+          alert("로그인 필요함");
+          navigate("/login");
+        }
+      });
+
+    return () => {
+      console.log("Asd");
+    };
+  }, []);
 
   const [checked, setChecked] = useState([]);
   const [todoList, setTodoList] = useState({
@@ -61,7 +84,7 @@ const Todo = () => {
   return (
     <Wrapper>
       <View>
-        <Date>2022.11.28</Date>
+        <Date>{dayDate}</Date>
         <TodoWrapper>
           {data.map((value, index) => {
             return value.check ? (

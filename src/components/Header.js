@@ -1,15 +1,20 @@
 import styled from "styled-components";
 import { Link, Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
-
+import { useCookies } from "react-cookie";
 import { imgLogo } from "../assets";
 
 // 쿠키 선언
-let cookie = false; // true : 로그인 후, false : 로그인 전
+let cookie = true; // true : 로그인 후, false : 로그인 전
 
 const Header = () => {
   // 날짜
+  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
   const [date, setDate] = useState("0000.00.00");
+
+  // useEffect(() => {
+  //   cookie = cookies.accessToken;
+  // }, [cookies]);
 
   useEffect(() => {
     const Timer = setInterval(() => {

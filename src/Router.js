@@ -19,13 +19,13 @@ const Router = () => {
       <BrowserRouter>
         <Routes>
           <Route element={<Header />}>
-            <Route path="/user" element={<DayUser />} />
+            <Route path="/user/:dayDate" element={<DayUser />} />
             <Route path="/" element={<BeforeLogin />} />
             <Route path="/main" element={<Main />} />
             <Route path="/mypage" element={<Mypage />} />
             <Route path="/revisionpw" element={<RevisionPw />} />
             <Route path="/findpw" element={<FindPw />} />
-            <Route path="/view" element={<ViewMain />} />
+            <Route path="/view/:dayDate/:userName" element={<ViewMain />} />
           </Route>
           <Route path="/signup" element={<SignUp />} />
           <Route path="/login" element={<LogIn />} />

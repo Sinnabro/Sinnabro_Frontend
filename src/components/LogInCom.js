@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { imgLogo } from "../assets";
-const baseUrl = "http://localhost:8080";
+const baseUrl = process.env.REACT_APP_BASEURL;
 import { useCookies } from "react-cookie"; // useCookies import
 
 const LogInCom = () => {
@@ -13,7 +13,6 @@ const LogInCom = () => {
   // 변수 선언
   let check = true;
 
-  // error message 변수
   const [errorE, setErrorE] = useState(""); //   email error message
   const [errorP, setErrorP] = useState(""); //   password error message
 
@@ -95,7 +94,7 @@ const LogInCom = () => {
       })
         .then(function (response) {
           setCookie("accessToken", response.data.accessToken); // 쿠키에 토큰 저장
-          navigate("/");
+          navigate("/main");
         })
         .catch(function (error) {
           if (error.response.status === 400) {

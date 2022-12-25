@@ -1,17 +1,18 @@
+import { Link, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
+
 import WiseSaying from "../components/view/WiseSaying";
 import Todo from "../components/view/Todo";
 import Comment from "../components/view/Comment";
 import DDay from "../components/DDay";
-import { DDayPencil } from "../assets";
-// import TimeTable from "../components/TimeTable";
 import Temporary from "../components/Temporary";
-import { Link } from "react-router-dom";
-import { useEffect, useState } from "react";
 import TimeTable from "../components/main/TimeTable";
-import { imgLogo, x } from "../assets";
+
+import { imgLogo, x, DDayPencil } from "../assets";
 
 const ViewMain = () => {
+  const { dayDate, useName } = useParams();
   // 변수 선언
   let check = true;
   const [bar, setBar] = useState([
@@ -33,15 +34,12 @@ const ViewMain = () => {
   // error message 변수
   const [errorN, setErrorN] = useState(""); // name error message
   const [errorD, setErrorD] = useState(""); // date error message
-  // const [errorNum, setErrorNum] = useState(""); // number error message
-
   // input value 변수
   const [inputs, setInputs] = useState({
     name: "",
     date: "",
   });
   const { name, date } = inputs;
-
   // input value가 바뀔 때마다 전달
   const change = (e) => {
     setInputs({
@@ -49,19 +47,6 @@ const ViewMain = () => {
       [e.target.name]: e.target.value,
     });
   };
-
-  // error message 보내주는 함수들
-  // // number
-  // const errorNumberM = () => {
-  //   if (number === "") {
-  //     setErrorNum("숫자를 입력해 주세요.");
-  //     check = false;
-  //   } else {
-  //     setErrorNum("");
-  //     setModal2(false);
-  //   }
-  // };
-  // 1. name
   const errorNameM = () => {
     // 디데이 이름 입력 안 했을 때
     if (name === "") {
@@ -71,7 +56,6 @@ const ViewMain = () => {
       setErrorN("");
     }
   };
-
   // 2. date
   const errorDateM = () => {
     // 날짜 선택 안 했을 때
@@ -82,7 +66,6 @@ const ViewMain = () => {
       setErrorD("");
     }
   };
-
   // 설정하기 체크 함수
   const checkSetting1 = () => {
     errorNameM();
@@ -96,33 +79,6 @@ const ViewMain = () => {
     }
   };
 
-  // // 그래프 길이 조절 함수
-  // const progress = () => {
-  //   let i = 0;
-
-  //   setInterval(() => {
-  //     if (i <= number) {
-  //       setBar(`${(i * 5) / 3}%`);
-  //       i++;
-  //     } else {
-  //       clearInterval();
-  //     }
-  //   }, 16);
-  // };
-
-  // const checkSetting2 = () => {
-  //   progress();
-  //   errorNumberM();
-  //   if (check) {
-  //     setErrorNum("");
-  //     // axios 연동
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   setBar(bar);
-  //   // console.log("useEffect", bar);
-  // }, [bar]);
   return (
     <>
       <Temporary />
@@ -133,9 +89,7 @@ const ViewMain = () => {
               <DatesDiv>
                 <DTitleDiv>
                   <ModalImgsDiv>
-                    <Link to="/beforelogin">
-                      <IMGLogo src={imgLogo} alt="IMGLogo" />
-                    </Link>
+                    <IMGLogo src={imgLogo} alt="IMGLogo" />
 
                     <XButton onClick={modalRemove1}>
                       <X src={x} alt="X" />
@@ -144,14 +98,7 @@ const ViewMain = () => {
                 </DTitleDiv>
 
                 <ModalBodyDiv>
-                  <TitleP
-                    style={{
-                      marginBottom: "25px",
-                      color: "#000000",
-                    }}
-                  >
-                    D-day 설정하기
-                  </TitleP>
+                  <TitleP>D-day 설정하기</TitleP>
                   <NameDiv>
                     <NameInput
                       onChange={change}
@@ -320,6 +267,8 @@ const ModalBodyDiv = styled.div`
 `;
 
 const TitleP = styled.p`
+  margin-bottom: 25px;
+  color: #000000;
   margin-top: 48px;
   font-size: 20px;
   font-family: "Inter";

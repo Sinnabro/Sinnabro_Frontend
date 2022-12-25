@@ -3,12 +3,17 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { imgLogo, x } from "../assets";
+import axios from "axios";
+import { useCookies } from "react-cookie";
+import { useEffect } from "react";
+
+const baseUrl = process.env.REACT_APP_BASEURL;
 
 const FindPwCom = () => {
   // 변수 선언
   let check = true;
   let numberComfirm = 0;
-  let numberSend = 0;
+  const [numberSend, setNumberSend] = useState(0);
 
   // axios POST
 
@@ -60,10 +65,29 @@ const FindPwCom = () => {
       setErrorE("잘못된 이메일 형식입니다.");
       check = false;
     }
-    // 이미 가입되어 있는 이메일 일 때
+    // 이메일
     else {
       setErrorE("");
-      setModal(true);
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/email`,
+        data: {
+          email: email,
+        },
+      })
+        .then(function (response) {
+          setErrorE("");
+          setModal(true);
+        })
+        .catch(function (error) {
+          if (error.response.status === 400) {
+            alert("알 수 없는 오류입니다.");
+          } else if (error.response.status === 404) {
+            setErrorE("존재하지 않는 이메일입니다.");
+          } else {
+            alert(`오류 (${error.response.status})`);
+          }
+        });
     }
   };
 
@@ -81,6 +105,9 @@ const FindPwCom = () => {
 
   // error message 보내주는 함수들
 
+  useEffect(() => {
+    console.log(numberSend);
+  }, [numberSend]);
   // 1. email
   const errorEmailM = () => {
     // 이메일 입력 안 했을 때
@@ -94,7 +121,6 @@ const FindPwCom = () => {
       check = false;
     }
     // 존재하지 않는 이메일 일 때
-
     // 인증번호 버튼 안 눌렀을 때
     else if (numberSend === 0) {
       setErrorE("인증번호 버튼을 눌러주세요.");
@@ -110,12 +136,10 @@ const FindPwCom = () => {
     if (emailConfirm === "") {
       setErrorEC("인증번호를 입력해 주세요.");
       check = false;
-    }
-    // 인증번호 틀렸을 때
-    else {
+    } else {
       setErrorEC("");
       setModal(false);
-      numberSend += 1;
+      setNumberSend(numberSend + 1);
     }
   };
 
@@ -150,6 +174,24 @@ const FindPwCom = () => {
       setErrorCP("");
 
       // axios 연동
+      axios({
+        method: "patch",
+        url: `${baseUrl}/user/find/${email}`,
+        data: {
+          new_password: pw,
+        },
+      })
+        .then((response) => {
+          check = true;
+          setErrorCP("비밀번호가 수정되었습니다.");
+        })
+        .catch((error) => {
+          if (error.response.status === 400) {
+            alert("잘못된 요청입니다.");
+          } else if (error.response.status === 404) {
+            alert("존재하지 않는 회원입니다.");
+          }
+        });
     }
   };
 

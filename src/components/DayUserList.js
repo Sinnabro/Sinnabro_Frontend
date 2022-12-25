@@ -1,17 +1,28 @@
+import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import { UserProfileList, UserListHeart } from "../assets";
 
 const DayUserList = ({ data }) => {
+  const navigate = useNavigate();
+  const { dayDate } = useParams();
+  let day = dayDate.split("-");
   return (
     <Wrapper>
       <Title>
         <p>DSM 스터디플래너</p>
-        <p>2022년 11월 29일</p>
+        <p>
+          {day[0]}년{day[1]}월 {day[2]}일 - {data.length}명
+        </p>
       </Title>
       <Content>
         {data.map((value) => {
           return (
-            <UserWrapper key={value.id}>
+            <UserWrapper
+              key={value.id}
+              onClick={() => {
+                navigate("/view/" + dayDate + "/" + value.name);
+              }}
+            >
               <User>
                 <UserImg src={UserProfileList} />
                 <UserName>{value.name}</UserName>

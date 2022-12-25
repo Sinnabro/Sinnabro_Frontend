@@ -4,18 +4,18 @@ import { deleteBox } from "../../assets/index";
 const Comment = () => {
   const data = [
     {
-      name: "회원 닉네임",
-      content: "댓글",
+      name: "세종대왕",
+      content: "아니 국어 시험을 오답할게 있다고?!! 좀 심각하구먼",
       createdAt: "2022 - 10 - 04",
     },
     {
-      name: "회원 닉네임",
-      content: "댓글",
+      name: "정약용",
+      content: "맞지 수학은 버리는게 답이오. 수학은 나같은 천재들만 하는 과목이오. ",
       createdAt: "2022 - 10 - 05",
     },
     {
-      name: "회원 닉네임",
-      content: "댓글",
+      name: "심청이",
+      content: "휴식은 필요하지. 너무 뼈 빠지게 일했더니 나처럼 인당수에도 빠지고 이러는거 아니야. ",
       createdAt: "2022 - 10 - 06",
     },
   ];

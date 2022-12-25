@@ -1,11 +1,40 @@
+import axios from "axios";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useCookies } from "react-cookie";
 import styled from "styled-components";
-
+const baseUrl = process.env.REACT_APP_BASEURL;
+var date = new Date();
 const DDay = ({ height }) => {
-  let data = {
-    dayname: "기말고사",
-    date: "2022-12-21",
-  };
+  const [cookies, setCookie, removeCookie] = useCookies(["accessToken"]);
+  const token = cookies.accessToken;
+  const [data, setData] = useState({
+    dayname: "d-day",
+    date: "2023-01-01",
+  });
+  useEffect(() => {
+    axios({
+      method: "get",
+      url: `${baseUrl}/date`,
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then(function (response) {
+        if (response.data === null) {
+          setData({ date: date, dayname: "디데이 없음" });
+        } else {
+          setData({ date: response.data.date, dayname: response.data.dayname });
+        }
+      })
+      .catch(function (error) {
+        if (error.response.status === 400)
+          alert("알 수 없는 오류입니다. 고객센터는 없으니 어떡하죠 - 디데이");
+        else if (error.response.status === 404)
+          setData({ date: "2022-12-25", dayname: "크리스마스" });
+        else alert(`오류 (${error.response.status})`);
+      });
+  }, []);
 
   let [dDay, setDDay] = useState("");
   let day = data.date;
