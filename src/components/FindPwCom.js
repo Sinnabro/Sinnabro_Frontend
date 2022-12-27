@@ -5,15 +5,14 @@ import { useState } from "react";
 import { imgLogo, x } from "../assets";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { useEffect } from "react";
 
-const baseUrl = process.env.REACT_APP_BASEURL;
+const baseUrl = "http://172.20.10.2:8080";
 
 const FindPwCom = () => {
   // 변수 선언
   let check = true;
   let numberComfirm = 0;
-  const [numberSend, setNumberSend] = useState(0);
+  let numberSend = 0;
 
   // axios POST
 
@@ -68,7 +67,6 @@ const FindPwCom = () => {
     // 이메일
     else {
       setErrorE("");
-<<<<<<< HEAD
       axios({
         method: "post",
         url: `${baseUrl}/user/email`,
@@ -89,9 +87,6 @@ const FindPwCom = () => {
             alert(`오류 (${error.response.status})`);
           }
         });
-=======
-      setModal(true);
->>>>>>> develop
     }
   };
 
@@ -109,9 +104,6 @@ const FindPwCom = () => {
 
   // error message 보내주는 함수들
 
-  useEffect(() => {
-    console.log(numberSend);
-  }, [numberSend]);
   // 1. email
   const errorEmailM = () => {
     // 이메일 입력 안 했을 때
@@ -125,6 +117,7 @@ const FindPwCom = () => {
       check = false;
     }
     // 존재하지 않는 이메일 일 때
+
     // 인증번호 버튼 안 눌렀을 때
     else if (numberSend === 0) {
       setErrorE("인증번호 버튼을 눌러주세요.");
@@ -142,7 +135,6 @@ const FindPwCom = () => {
       check = false;
     } else {
       setErrorEC("");
-<<<<<<< HEAD
       axios({
         method: "post",
         url: `${baseUrl}/user/verify/${email}`,
@@ -166,10 +158,6 @@ const FindPwCom = () => {
             check = false;
           } else alert(`오류 (${error.response.status})`);
         });
-=======
-      setModal(false);
-      setNumberSend(numberSend + 1);
->>>>>>> develop
     }
   };
 
@@ -204,7 +192,6 @@ const FindPwCom = () => {
       setErrorCP("");
 
       // axios 연동
-<<<<<<< HEAD
       axios({
         method: "patch",
         url: `${baseUrl}/user/find/${email}`,
@@ -223,8 +210,6 @@ const FindPwCom = () => {
             alert("존재하지 않는 회원입니다.");
           }
         });
-=======
->>>>>>> develop
     }
   };
 
