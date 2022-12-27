@@ -3,9 +3,10 @@ import { Link, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import axios from "axios";
 import { imgLogo } from "../assets";
+const baseUrl = process.env.REACT_APP_BASEURL;
 import { useCookies } from "react-cookie"; // useCookies import
 
-const baseUrl = "http://172.20.10.2:8080";
+const baseUrl = "http://192.168.153.141:8080";
 
 const LogInCom = () => {
   const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
@@ -14,7 +15,6 @@ const LogInCom = () => {
   // 변수 선언
   let check = true;
 
-  // error message 변수
   const [errorE, setErrorE] = useState(""); //   email error message
   const [errorP, setErrorP] = useState(""); //   password error message
 
@@ -85,17 +85,17 @@ const LogInCom = () => {
       setErrorE("");
       setErrorP("");
       // axios 연동
-      axios
-        .post({
-          url: `${baseUrl}/user/login`,
-          data: {
-            email: email,
-            password: pw,
-          },
-        })
+      axios({
+        method: "post",
+        url: `${baseUrl}/user/login`,
+        data: {
+          email: email,
+          password: pw,
+        },
+      })
         .then(function (response) {
           setCookie("accessToken", response.data.accessToken); // 쿠키에 토큰 저장
-          navigate("/");
+          navigate("/main");
         })
         .catch(function (error) {
           console.log(error);
