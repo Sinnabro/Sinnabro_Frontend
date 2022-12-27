@@ -3,16 +3,15 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { imgLogo } from "../assets";
-import axios from "axios";
 import { useCookies } from "react-cookie";
-
-const baseUrl = "http://172.20.10.2:8080";
-
+import axios from "axios";
+const baseUrl = process.env.REACT_APP_BASEURL;
 const RevisionPwCom = () => {
   const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
 
   // 변수 선언
   let check = true;
+  const [cookies, setCookie] = useCookies(["accessToken"]); // 쿠키 훅
 
   // error message 변수
   const [errorP, setErrorP] = useState(""); //     password error message
@@ -73,6 +72,7 @@ const RevisionPwCom = () => {
 
     errorPwM();
     errorNewPwM();
+    const token = cookies.accessToken;
 
     if (check) {
       setErrorP("");
@@ -80,17 +80,18 @@ const RevisionPwCom = () => {
       setErrorCNP("");
 
       // axios 연동
-      axios
-        .patch({
-          url: `${baseUrl}/user/password`,
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          data: {
-            password: pw,
-            new_password: newPw,
-          },
-        })
+<<<<<<< HEAD
+      axios({
+        method: "patch",
+        url: `${baseUrl}/user/password`,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: {
+          password: pw,
+          new_password: newPw,
+        },
+      })
         .then((response) => {
           check = true;
           setErrorCNP("비밀번호가 수정되었습니다.");
@@ -116,6 +117,8 @@ const RevisionPwCom = () => {
             alert(`오류 ${error.response.status}`);
           }
         });
+=======
+>>>>>>> develop
     }
   };
 
