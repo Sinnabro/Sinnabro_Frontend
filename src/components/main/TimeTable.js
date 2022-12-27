@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import dummy from "../DB/data.json";
 
-import { bell, pencil, imgLogo, x } from "../../assets";
+import { bell, imgLogo, x } from "../../assets";
 
-const Graph = ({ bar, setBar }) => {
+const Graph = ({ bar }) => {
   // 함수
 
   return (
@@ -20,8 +21,6 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
   // 변수 선언
   const [errorNum, setErrorNum] = useState(""); // number error message
   let check = true;
-  let arrNum = 0;
-  let arrArr = 0;
 
   // modal remove 함수
   const modalRemove2 = () => {
@@ -55,6 +54,9 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
 
   // 그래프 길이 조절 함수
   const progress = () => {
+    let large = bar[0];
+
+    console.log(bar[0]);
     let i = 0;
 
     setInterval(() => {
@@ -70,7 +72,7 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
   const checkSetting2 = () => {
     progress();
     errorNumberM();
-    arrNum = number;
+
     if (check) {
       setErrorNum("");
       // axios 연동
@@ -82,10 +84,10 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
     // console.log("useEffect", bar);
   }, [bar]);
 
-  const arr = [
-    5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-    1, 2, 3, 4,
-  ];
+  // const arr = [
+  //   5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+  //   1, 2, 3, 4,
+  // ];
 
   return (
     <>
@@ -100,22 +102,20 @@ const TimeTable = ({ bar, setBar, setModal2, modal2, setModal1 }) => {
         </TitleDiv>
 
         <BodyDiv>
-          {arr.map((v, i) => {
-            return (
-              <GDiv key={i}>
-                <Bt
-                  key={i}
-                  onClick={() => {
-                    setModal2(true);
-                    // arrArr = i;
-                  }}
-                >
-                  {v}
-                </Bt>
-                <Graph bar={bar} setBar={setBar} key={v} i={i} />
-              </GDiv>
-            );
-          })}
+          {dummy.number.map((id) => (
+            <GDiv key={id.id}>
+              <Bt
+                onClick={() => {
+                  setModal2(true);
+                  setBar(++bar[id.id]);
+                  console.log(bar);
+                }}
+              >
+                {id.id}
+              </Bt>
+              <Graph bar={bar} />
+            </GDiv>
+          ))}
         </BodyDiv>
       </Div>
 
