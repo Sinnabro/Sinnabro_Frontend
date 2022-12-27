@@ -1,11 +1,9 @@
 import styled from "styled-components";
-import { useState } from "react";
+import dummy from "./DB/data.json";
 
-import { bell, pencil } from "../assets";
+import { bell } from "../assets";
 
-const Graph = ({ bar, setBar }) => {
-  // 변수 선언
-
+const Graph = ({ bar }) => {
   return (
     <GraphDiv>
       <CoverBarDiv>
@@ -15,11 +13,11 @@ const Graph = ({ bar, setBar }) => {
   );
 };
 
-const TimeTable = ({ bar, setBar, setModal2 }) => {
-  const arr = [
-    5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
-    1, 2, 3, 4,
-  ];
+const TimeTable = ({ bar, setModal2 }) => {
+  // const arr = [
+  //   5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24,
+  //   1, 2, 3, 4,
+  // ];
 
   return (
     <Div>
@@ -29,20 +27,18 @@ const TimeTable = ({ bar, setBar, setModal2 }) => {
       </TitleDiv>
 
       <BodyDiv>
-        {arr.map((i, idx) => {
-          return (
-            <GDiv key={idx}>
-              <Bt
-                onClick={() => {
-                  setModal2(true);
-                }}
-              >
-                {i}
-              </Bt>
-              <Graph bar={bar} setBar={setBar} />
-            </GDiv>
-          );
-        })}
+        {dummy.number.map((id) => (
+          <GDiv key={id.id}>
+            <Bt
+              onClick={() => {
+                setModal2(true);
+              }}
+            >
+              {id.id}
+            </Bt>
+            <Graph bar={bar} />
+          </GDiv>
+        ))}
       </BodyDiv>
     </Div>
   );
